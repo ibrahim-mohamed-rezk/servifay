@@ -62,8 +62,9 @@ const Login = () => {
               }}
             />
             <Link
-              className={styles.mobileForgetPassword}
+              className={`${styles.mobileForgetPassword} ml-50`}
               to={"/forgotPassword-addemail"}
+              
             >
               Forgot password?
             </Link>
@@ -73,9 +74,9 @@ const Login = () => {
           </form>
         </div>
         <div className={styles.loginMobileGoToRejester}>
-          Don't have an account?
+          Don't have an account?{" "} 
           <Link
-            style={{ color: "#ff9300", textDecoration: "none" }}
+            style={{ color: "#ff9300", textDecoration: "none", display:"inline" }}
             to={"/register"}
           >
             Sign up

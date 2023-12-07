@@ -70,9 +70,9 @@ const Rejester = () => {
           </form>
         </div>
         <div className={styles.loginMobileGoToRejester}>
-          Already have an account?
+          Already have an account?{" "}
           <Link
-            style={{ color: "#ff9300", textDecoration: "none" }}
+            style={{ color: "#ff9300", textDecoration: "none", display:"inline" }}
             to={"/login"}
           >
             Login
