@@ -1,0 +1,13 @@
+######################globals #####################
+$w ==> width
+$h ==> height
+$b ==>border
+$br ==> border-radius
+$c ==> color
+$bgc => background-color
+$p ==> padding
+
+
+
+########### input ##########
+$outl ==> outline

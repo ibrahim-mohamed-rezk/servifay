@@ -1,0 +1,41 @@
+.forgetPassChilds {
+  width: 90%;
+}
+
+.forgetPassChilds h2 {
+  font-weight: 600;
+  text-align: center;
+  color: #2b1448;
+  font-size: 28px;
+  line-height: 40px;
+}
+
+.forgetPassChilds p {
+  color: #52485f;
+  font-size: 14px;
+  line-height: 20px;
+  font-weight: 600;
+  text-align: center;
+}
+
+
+.forgetPassChilds form{
+    width: 75%;
+    gap: 2em;
+}
+
+.forgetPassChilds .otpForm{
+    align-items: center;
+    justify-content: center;
+}
+
+.forgetPassChilds .otpForm .otpInputs{
+    gap: 1em;
+}
+
+@media(max-width:575px){
+    .forgetPassChilds form{
+        width: 100%;
+        
+    }
+}

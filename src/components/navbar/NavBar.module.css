@@ -1,0 +1,42 @@
+.cont {
+  display: flex;
+  flex-direction: column;
+  height: 100%;
+}
+.mainDiv {
+  font-size: 20px;
+  line-height: 32px;
+  height: 100vh;
+}
+.hello {
+  font-weight: bold;
+  margin-left: 24px;
+}
+.nav,
+.navContent {
+  background-color: #602ba3;
+  color: white;
+}
+a {
+  display: block;
+  text-decoration: none;
+}
+.profile,
+.setting,
+.notifi,
+.logout {
+  color: white;
+}
+.profile:hover,
+.setting:hover,
+.notifi:hover,
+.logout:hover {
+  color: rgb(194, 191, 191);
+}
+.notifi,
+.logout {
+  margin-top: 60px;
+}
+.hello {
+  margin-top: 100px;
+}

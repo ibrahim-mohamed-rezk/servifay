@@ -1,0 +1,91 @@
+.loginMobileLogo {
+  font-size: xx-large;
+  font-weight: 900;
+  margin: 100px 0;
+}
+
+.loginMobileWelcomeText h2 {
+  font-weight: 600;
+  text-align: center;
+  color: #2b1448;
+  font-size: 28px;
+  line-height: 40px;
+}
+
+.brawserWelcomeText {
+  display: none;
+}
+
+.loginMobileWelcomeText p {
+  color: #52485f;
+  font-size: 14px;
+  line-height: 20px;
+  font-weight: 600;
+}
+
+.loginMobileForm {
+  display: flex;
+  width: 100%;
+}
+
+.loginMobileForm form {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  width: 100%;
+  gap: 1.25em;
+  margin-top: 1em;
+}
+
+.mobileForgetPassword {
+  text-decoration: none;
+  text-align: left;
+  width: 92%;
+  color: #1567ff;
+}
+
+.authWith{
+  display: flex;
+  flex-direction: column;
+  margin-top: 20px;
+  align-items: center;
+  justify-content: center;
+  width: 100%;
+  gap: 0.5em;
+}
+
+.authWithChiled{
+  display: flex;
+  align-content: center;
+  width: 90%;
+  padding: 5px;
+  border: 2px solid #eee;
+  border-radius: 10px;
+  gap: 25%;
+  max-width: 450px;
+}
+
+
+/* brawser styles */
+@media (min-width: 768px) {
+
+  .mobileLoginContainer{
+    max-width: 50%;
+  }
+
+  .loginMobileLogo {
+    display: none;
+  }
+
+  .loginMobileWelcomeText {
+    display: none;
+  }
+
+  .brawserWelcomeText {
+    display: block;
+    font-size: xx-large;
+    font-weight: 900;
+    margin: 100px 0 20px 0;
+  }
+}
