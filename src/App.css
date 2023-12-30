@@ -8,8 +8,16 @@ mt-number ==> margin-top equal this number
 
 */
 
+* {
+  font-family: "Bubblegum Sans", sans-serif;
+  font-family: "Pacifico", cursive;
+  font-family: "Roboto", sans-serif;
+}
 
-
+a {
+  text-decoration: none;
+  color: inherit;
+}
 
 /* global styles */
 .flex {
@@ -28,86 +36,84 @@ mt-number ==> margin-top equal this number
   align-items: center;
 }
 
-
 /* margin top from 10 to 100 step 10 */
-.mt-10{
+.mt-10 {
   margin-top: 10px;
 }
 
-.mt-20{
+.mt-20 {
   margin-top: 20px;
 }
 
-.mt-30{
+.mt-30 {
   margin-top: 30px;
 }
 
-.mt-40{
+.mt-40 {
   margin-top: 40px;
 }
 
-.mt-50{
+.mt-50 {
   margin-top: 50px;
 }
 
-.mt-60{
+.mt-60 {
   margin-top: 60px;
 }
 
-.mt-70{
+.mt-70 {
   margin-top: 70px;
 }
 
-.mt-80{
+.mt-80 {
   margin-top: 80px;
 }
 
-.mt-90{
+.mt-90 {
   margin-top: 90px;
 }
 
-.mt-100{
+.mt-100 {
   margin-top: 100px;
 }
 
 /* margin left from 10 to 100 step 10 */
-.ml-10{
+.ml-10 {
   margin-left: 10px;
 }
 
-.ml-20{
+.ml-20 {
   margin-left: 20px;
 }
 
-.ml-30{
+.ml-30 {
   margin-left: 30px;
 }
 
-.ml-40{
+.ml-40 {
   margin-left: 40px;
 }
 
-.ml-50{
+.ml-50 {
   margin-left: 50px;
 }
 
-.ml-60{
+.ml-60 {
   margin-left: 60px;
 }
 
-.ml-70{
+.ml-70 {
   margin-left: 70px;
 }
 
-.ml-80{
+.ml-80 {
   margin-left: 80px;
 }
 
-.ml-90{
+.ml-90 {
   margin-left: 90px;
 }
 
-.ml-100{
+.ml-100 {
   margin-left: 100px;
 }
-      

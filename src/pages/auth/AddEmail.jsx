@@ -1,10 +1,10 @@
-import axios from "axios";
 import React, { useEffect, useState } from "react";
 import { useSelector } from "react-redux";
 import { useNavigate } from "react-router-dom";
 import styles from "./auth.module.css";
 import OrangeButton from "../../styled-components/buttons/OrangeButton";
 import FormInput from "../../styled-components/inputs/FormInput";
+import backendURL from "../../axios/backend";
 
 const AddEmail = () => {
   const navigate = useNavigate();
@@ -20,8 +20,8 @@ const AddEmail = () => {
 
   const handelSubmit = (e) => {
     e.preventDefault();
-    axios
-      .post("http://18.234.223.101/api/forget", { email })
+    backendURL
+      .post("/forget", { email })
       .then(() => {
         navigate("/forgotPassword-addotp");
       })
@@ -33,11 +33,11 @@ const AddEmail = () => {
   return (
     <>
       <div className={`container flex-col-c mt-100`}>
-        <div className={`${styles.forgetPassChilds } flex-col-c`} >
+        <div className={`${styles.forgetPassChilds} flex-col-c`}>
           <h2>FORGET PASSWORD</h2>
           <p>A Verificatio Code Will Be Send To Your Email</p>
         </div>
-        <div className={`flex-col-c ${styles.forgetPassChilds }`}>
+        <div className={`flex-col-c ${styles.forgetPassChilds}`}>
           <form className={`flex-col-c mt-50`}>
             <FormInput
               placeholder="Email"

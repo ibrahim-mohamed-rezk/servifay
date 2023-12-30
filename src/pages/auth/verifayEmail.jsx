@@ -1,24 +1,19 @@
-import React, { useEffect, useState } from "react";
-import { useSelector } from "react-redux";
+import React, { useState } from "react";
 import { useNavigate } from "react-router-dom";
 import OrangeButton from "../../styled-components/buttons/OrangeButton";
 import FormInput from "../../styled-components/inputs/FormInput";
 import styles from "./auth.module.css";
 import CountdownTimer from "../../components/countdownTimer/CountdownTimer";
+import { useDispatch, useSelector } from "react-redux";
+import { setLogin } from "../../store/slices/auth/authSlice";
 import backendURL from "../../axios/backend";
 
-const AddOTP = () => {
+const VerifayEmail = () => {
   const [otp, setOtp] = useState(["", "", "", ""]);
   const [errms, setErrMs] = useState("");
   const navigate = useNavigate();
+  const dispatch = useDispatch();
   const user = useSelector((data) => data.auth);
-
-  //redirect user to home page if it's logged in
-  useEffect(() => {
-    if (user.isloggedin === true && user.token !== "") {
-      navigate("/");
-    }
-  }, [navigate, user.isloggedin, user.token]);
 
   const handleChange = (index, value) => {
     if (/^\d+$/.test(value) || value === "") {
@@ -41,24 +36,29 @@ const AddOTP = () => {
   const handelSubmit = (e) => {
     e.preventDefault();
     backendURL
-      .post(`/otp/${otp.join("")}`)
+      .post(`/verify-email/${otp.join("")}`)
       .then((res) => {
+        localStorage.setItem(
+          "user",
+          JSON.stringify({ ...user, email_active: "Yes" })
+        );
+        dispatch(setLogin({ ...user, email_active: "Yes" }));
         res.data.status === false
-          ? setErrMs("OTP is not correct")
-          : navigate(`/forgotPassword-resetPassword/${otp.join("")}`);
+          ? setErrMs("verifcation code is not correct")
+          : navigate(`/`);
       })
-      .catch((err) => {
-        console.log(err);
+      .catch(() => {
+        setErrMs("verifcation code is not correct");
       });
   };
 
   return (
     <div className={`container flex-col-c mt-100`}>
       <div className={`${styles.forgetPassChilds} flex-col-c`}>
-        <h2>FORGET PASSWORD</h2>
+        <h2>Verify Email</h2>
         <p>Enter The 4-digits Code</p>
       </div>
-      <p>{errms}</p>
+      <p style={{ color: "red" }}>{errms}</p>
       <div className={`flex-col-c ${styles.forgetPassChilds}`}>
         <form className={`mt-50 flex-col-c ${styles.otpForm}`}>
           <div className={`${styles.otpInputs} flex`}>
@@ -91,7 +91,7 @@ const AddOTP = () => {
             type="submit"
             onClick={handelSubmit}
           >
-            CONGIRM
+            CONFIRM
           </OrangeButton>
         </form>
       </div>
@@ -99,4 +99,4 @@ const AddOTP = () => {
   );
 };
 
-export default AddOTP;
+export default VerifayEmail;

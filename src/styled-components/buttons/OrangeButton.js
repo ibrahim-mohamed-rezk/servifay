@@ -7,13 +7,12 @@ const OrangeButton = styled.button`
   border: none;
   outline: none;
   border-radius: ${(props) => (props.$br ? props.$br : "15px")};
-  padding: 5px 15px;
+  padding: ${(props) => (props.$p ? props.$p : "5px 15px")};
   color: ${(props) => (props.$c ? props.$c : "#fff")};
   font-weight: bolder;
   line-height: 20px;
-  font-size: 18px;
-  margin-top: 0.25em;
-  margin-bottom: 1.5em;
+  font-size: ${(props) => (props.$fs ? props.$fs : "18px")};
+  margin: ${(props) => (props.$m ? props.$m : "0.25em 0 1.5em 0")};
 `;
 
 export default OrangeButton;

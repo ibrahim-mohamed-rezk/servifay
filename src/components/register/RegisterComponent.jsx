@@ -6,10 +6,14 @@ import GoogleIcon from "@mui/icons-material/Google";
 import OrangeButton from "../../styled-components/buttons/OrangeButton";
 import FormInput from "../../styled-components/inputs/FormInput";
 import backendURL from "../../axios/backend";
+import handleGoogleSignIn from "../../firebase/loginWithGoogle";
+import { useDispatch } from "react-redux";
+import { setLogin } from "../../store/slices/auth/authSlice";
 
 const Rejester = () => {
   const [fromData, setFromData] = useState({});
   const navigate = useNavigate();
+  const dispatch = useDispatch();
 
   const handelSubmit = (event) => {
     event.preventDefault();
@@ -23,9 +27,26 @@ const Rejester = () => {
       });
   };
 
+  const googleLogin = () => {
+    handleGoogleSignIn()
+      .then((res) => {
+        localStorage.setItem(
+          "user",
+          JSON.stringify({ ...res.data.data, isLoggedIn: true })
+        );
+        dispatch(setLogin(res.data.data));
+      })
+      .then(() => {
+        navigate("/");
+      })
+      .catch((error) => {
+        console.error("Error occurred:", error);
+      });
+  };
+
   return (
     <>
-      <div className={`container flex-col-c` }>
+      <div className={`container flex-col-c`}>
         <div className={styles.loginMobileLogo}>logo</div>
         <div className={styles.loginMobileWelcomeText}>
           <h2>Register new accout</h2>
@@ -72,14 +93,18 @@ const Rejester = () => {
         <div className={styles.loginMobileGoToRejester}>
           Already have an account?{" "}
           <Link
-            style={{ color: "#ff9300", textDecoration: "none", display:"inline" }}
+            style={{
+              color: "#ff9300",
+              textDecoration: "none",
+              display: "inline",
+            }}
             to={"/login"}
           >
             Login
           </Link>
         </div>
         <div className={styles.authWith}>
-          <div className={styles.authWithChiled}>
+          <div className={styles.authWithChiled} onClick={googleLogin}>
             <GoogleIcon></GoogleIcon>
             <div className={styles.authWithChiledText}>Login With Google</div>
           </div>

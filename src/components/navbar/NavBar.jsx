@@ -1,107 +1,191 @@
+import React, { useState } from "react";
+import {
+  AppBar,
+  Toolbar,
+  IconButton,
+  Typography,
+  InputBase,
+  Menu,
+  MenuItem,
+  Button,
+  Drawer,
+  useMediaQuery,
+  createTheme,
+} from "@mui/material";
+import MenuIcon from "@mui/icons-material/Menu";
+import SearchIcon from "@mui/icons-material/Search";
+import AccountCircle from "@mui/icons-material/AccountCircle";
 import { Link } from "react-router-dom";
-import styles from "./NavBar.module.css";
-const NavBar = () => {
-  return (
-    <div className={styles.cont}>
-      <nav className={`navbar d-block d-sm-none ${styles.nav}`}>
-        <div className="container-fluid">
-          <button
-            className="navbar-toggler"
-            type="button"
-            data-bs-toggle="collapse"
-            data-bs-target="#navbarToggleExternalContent"
-          >
-            <span className="navbar-toggler-icon"></span>
-          </button>
-        </div>
-      </nav>
+import useUserLogin from "../../hooks/useUserLogin";
+import OrangeButton from "../../styled-components/buttons/OrangeButton";
 
-      <div
-        className={`collapse ${styles.navContent}`}
-        id="navbarToggleExternalContent"
+const theme = createTheme({
+  breakpoints: {
+    values: {
+      xs: 0,
+      sm: 770,
+      md: 960,
+      lg: 1280,
+      xl: 1920,
+    },
+  },
+});
+
+const Navbar = () => {
+  const isMobile = useMediaQuery(theme.breakpoints.down("sm"));
+
+  const [mobileOpen, setMobileOpen] = useState(false);
+  const [anchorEl, setAnchorEl] = useState(null);
+  const userLogedIn = useUserLogin();
+
+  const handleMenuOpen = (event) => {
+    setAnchorEl(event.currentTarget);
+  };
+
+  const handleMenuClose = () => {
+    setAnchorEl(null);
+  };
+
+  const handleDrawerToggle = () => {
+    setMobileOpen(!mobileOpen);
+  };
+
+  const drawerContent = (
+    <div
+      style={{
+        display: "flex",
+        flexDirection: "column",
+        alignItems: "center",
+        justifyContent: "center",
+      }}
+    >
+      <Button onClick={handleMenuOpen}>
+        <AccountCircle />
+      </Button>
+      <Menu
+        anchorEl={anchorEl}
+        open={Boolean(anchorEl)}
+        onClose={handleMenuClose}
       >
-        <div className={`p-4 ${styles.mainDiv} d-block d-sm-none`}>
-          <div className={styles.hello}>
-            <div>Hello ,</div>
-            <div>Tasneem!</div>
-          </div>
-          <Link className={styles.notifi}>
-            <svg
-              width="28"
-              height="28"
-              viewBox="0 0 24 24"
-              fill="currentColor"
-              xmlns="http://www.w3.org/2000/svg"
-              className="my-icon"
-            >
-              <path
-                fillRule="evenodd"
-                clipRule="evenodd"
-                d="M17.5592 14.316L18.5108 15.8099C18.7167 16.1336 18.7296 16.5437 18.5445 16.8797C18.3594 17.2156 18.0057 17.4238 17.6222 17.4227H6.0525C5.66956 17.4226 5.31711 17.2138 5.13287 16.8781C4.94864 16.5424 4.96186 16.133 5.16737 15.8099L6.10847 14.3265C6.20256 14.1782 6.25789 14.0085 6.26941 13.8332L6.61926 8.67638C6.8067 5.80116 9.27728 3.61481 12.154 3.77842C14.8245 3.98063 16.9292 6.13485 17.0694 8.80933L17.3983 13.8227C17.4098 13.998 17.4651 14.1677 17.5592 14.316ZM13.6498 18.8255C13.5267 18.6095 13.2982 18.475 13.0496 18.4723H10.6286C10.38 18.475 10.1515 18.6095 10.0284 18.8255C9.90527 19.0415 9.90602 19.3066 10.0303 19.5219C10.4076 20.1625 11.0956 20.5557 11.8391 20.5557C12.5825 20.5557 13.2705 20.1625 13.6478 19.5219C13.7722 19.3066 13.7729 19.0415 13.6498 18.8255Z"
-                fill="white"
-              />
-            </svg>
-            Notifications
-          </Link>
-          <Link className={`${styles.setting} mt-3`}>
-            <svg
-              width="28"
-              height="28"
-              viewBox="0 0 24 24"
-              fill="none"
-              xmlns="http://www.w3.org/2000/svg"
-            >
-              <path
-                fillRule="evenodd"
-                clipRule="evenodd"
-                d="M19.3578 13.9269L18.8572 13.6389C18.6139 13.5015 18.4782 13.2302 18.5143 12.9531C18.6058 12.321 18.6058 11.679 18.5143 11.0469C18.4803 10.7449 18.6413 10.4545 18.9155 10.3234L19.3475 10.0731C19.6344 9.90839 19.7627 9.56227 19.6526 9.25029C19.5039 8.82729 19.3192 8.41779 19.1006 8.02629C19.0492 7.93029 18.9909 7.83086 18.9326 7.73486C18.7088 7.35575 18.4543 6.99568 18.1715 6.65829C17.9331 6.39386 17.5357 6.34693 17.2423 6.54857L16.8001 6.80229C16.5593 6.94089 16.2588 6.92058 16.0389 6.75086C15.5417 6.35453 14.9897 6.03232 14.4001 5.79429C14.1453 5.68803 13.9791 5.43942 13.9783 5.16343V4.584C13.9838 4.24869 13.7459 3.95861 13.4161 3.89829C12.4275 3.72003 11.4149 3.72003 10.4263 3.89829C10.0964 3.95861 9.85859 4.24869 9.86406 4.584V5.16343C9.86097 5.44278 9.68873 5.69234 9.42863 5.79429C8.83541 6.03143 8.27987 6.35367 7.77948 6.75086C7.5596 6.92058 7.25905 6.94089 7.01834 6.80229L6.51434 6.51429C6.22763 6.34699 5.86226 6.40909 5.64691 6.66172C5.35821 6.99847 5.09789 7.35856 4.86863 7.73829C4.81034 7.83429 4.75206 7.93372 4.70063 8.02972C4.48304 8.42244 4.29951 8.83308 4.15206 9.25715C4.04572 9.56712 4.17357 9.909 4.4572 10.0731L4.95434 10.3611C5.19766 10.4985 5.3333 10.7698 5.2972 11.0469C5.20576 11.679 5.20576 12.321 5.2972 12.9531C5.3333 13.2302 5.19766 13.5015 4.95434 13.6389L4.4572 13.9269C4.17357 14.091 4.04572 14.4329 4.15206 14.7429C4.3008 15.1659 4.48547 15.5754 4.70406 15.9669C4.75548 16.0629 4.81377 16.1623 4.87206 16.2583C5.10132 16.638 5.36163 16.9981 5.65034 17.3349C5.86433 17.5868 6.22763 17.6503 6.51434 17.4857L7.01491 17.1943C7.25563 17.0557 7.55617 17.076 7.77605 17.2457C8.27728 17.6444 8.834 17.9678 9.42863 18.2057C9.68334 18.312 9.84953 18.5606 9.85034 18.8366V19.416C9.84487 19.7513 10.0827 20.0414 10.4126 20.1017C11.4012 20.28 12.4137 20.28 13.4023 20.1017C13.7322 20.0414 13.9701 19.7513 13.9646 19.416V18.8366C13.9677 18.5572 14.14 18.3077 14.4001 18.2057C14.9933 17.9686 15.5488 17.6463 16.0492 17.2491C16.2669 17.0839 16.5619 17.0637 16.8001 17.1977L17.3006 17.4891C17.5881 17.6584 17.9557 17.5962 18.1715 17.3417C18.4602 17.005 18.7205 16.6449 18.9498 16.2651C19.0081 16.1691 19.0663 16.0697 19.1178 15.9737C19.3344 15.5798 19.5167 15.168 19.6629 14.7429C19.7692 14.4329 19.6414 14.091 19.3578 13.9269ZM11.9075 15.0857C10.2033 15.0857 8.82177 13.7042 8.82177 12C8.82177 10.2958 10.2033 8.91429 11.9075 8.91429C13.6117 8.91429 14.9932 10.2958 14.9932 12C14.9932 12.8184 14.6681 13.6032 14.0894 14.1819C13.5107 14.7606 12.7259 15.0857 11.9075 15.0857Z"
-                fill="white"
-              />
-            </svg>
-            Setting
-          </Link>
+        <MenuItem onClick={handleMenuClose}>Profile</MenuItem>
+        <MenuItem onClick={handleMenuClose}>Sign Out</MenuItem>
+        <MenuItem onClick={handleMenuClose}>Settings</MenuItem>
+      </Menu>
+      {["Page1", "Page2", "Page3", "Page4", "Page5"].map((page, index) => (
+        <Button key={index} color="inherit">
+          {page}
+        </Button>
+      ))}
+    </div>
+  );
 
-          <Link className={`${styles.profile} mt-3`}>
-            <svg
-              width="24"
-              height="24"
-              viewBox="0 0 24 24"
-              fill="none"
-              xmlns="http://www.w3.org/2000/svg "
-            >
-              <path
-                fillRule="evenodd"
-                clipRule="evenodd"
-                d="M12 3.42857C7.26615 3.42857 3.42859 7.26613 3.42859 12C3.42859 16.7339 7.26615 20.5714 12 20.5714C16.7339 20.5714 20.5714 16.7339 20.5714 12C20.5714 9.72672 19.6684 7.54654 18.0609 5.93909C16.4535 4.33163 14.2733 3.42857 12 3.42857ZM12 6.28572C13.2821 6.28572 14.3214 7.32506 14.3214 8.60715C14.3214 9.88924 13.2821 10.9286 12 10.9286C10.7179 10.9286 9.67859 9.88924 9.67859 8.60715C9.67859 7.32506 10.7179 6.28572 12 6.28572ZM16.3679 15.6857C15.2821 16.9729 13.6839 17.7156 12 17.7156C10.3161 17.7156 8.71791 16.9729 7.63216 15.6857C7.36109 15.3478 7.32022 14.8798 7.52859 14.5C8.45988 12.922 10.168 11.967 12 12C13.832 11.967 15.5402 12.922 16.4714 14.5C16.6798 14.8798 16.6389 15.3478 16.3679 15.6857Z"
-                fill="white"
-              />
-            </svg>
-            Profile
-          </Link>
+  return (
+    <div>
+      <AppBar position="static" sx={{ backgroundColor: "#e0c8fe" }}>
+        <Toolbar
+          sx={{
+            display: "flex",
+            alignItems: "center",
+            justifyContent: "space-between",
+          }}
+        >
+          {isMobile ? (
+            <>
+              <IconButton
+                edge="start"
+                color="inherit"
+                aria-label="menu"
+                onClick={handleDrawerToggle}
+              >
+                <MenuIcon />
+              </IconButton>
+              <div sx={{ flexGrow: 1 }} />
 
-          <Link className={`${styles.profile} mt-3`}>
-            <svg
-              width="28"
-              height="28"
-              viewBox="0 0 24 24"
-              fill="none"
-              xmlns="http://www.w3.org/2000/svg"
+              <Typography variant="h6" sx={{ flexGrow: 1, textAlign: "right" }}>
+                <Link to={"/"}>Logo</Link>
+              </Typography>
+            </>
+          ) : (
+            <div
+              style={{
+                display: "flex",
+                alignItems: "center",
+                justifyContent: "space-between",
+                width: "100%",
+              }}
             >
-              <path
-                fillRule="evenodd"
-                clipRule="evenodd"
-                d="M18.5306 3.42857H5.4694C4.34229 3.42857 3.42859 4.34228 3.42859 5.46939V18.5306C3.42859 19.6577 4.34229 20.5714 5.4694 20.5714H14.0123C14.5525 20.5713 15.0706 20.357 15.4531 19.9755L19.9755 15.4531C20.357 15.0706 20.5713 14.5525 20.5714 14.0122V5.46939C20.5714 4.92813 20.3564 4.40904 19.9737 4.02631C19.591 3.64359 19.0719 3.42857 18.5306 3.42857ZM18.649 14.3306L14.3306 18.649C14.2144 18.7662 14.039 18.8018 13.8862 18.7393C13.7334 18.6768 13.6334 18.5283 13.6327 18.3633V15.6735C13.6327 14.5464 14.5464 13.6327 15.6735 13.6327H18.3633C18.5284 13.6333 18.6768 13.7334 18.7393 13.8862C18.8019 14.039 18.7662 14.2144 18.649 14.3306Z"
-                fill="white"
-              />
-            </svg>
-            Request
-          </Link>
-          <hr width="154px" className="text-light mt-5"></hr>
-          <Link className={`mt-5 ${styles.logout}`}>Logout</Link>
-        </div>
-      </div>
+              <div style={{ width: "20%" }}>
+                <Typography
+                  variant="h6"
+                  sx={{ flexGrow: 1, maxWidth: "200px" }}
+                >
+                  <Link to={"/"}>Servifay</Link>
+                </Typography>
+              </div>
+
+              <div
+                style={{
+                  width: "30%",
+                  display: "flex",
+                  gap: "1.5em",
+                }}
+              >
+                {["Home", "Services", "Contact"].map((page, index) => (
+                  <Button sx={{ color: "#000" }} key={index} color="inherit">
+                    {page}
+                  </Button>
+                ))}
+              </div>
+              <div
+                style={{
+                  width: "33%",
+                  display: "flex",
+                  alignItems: "center",
+                  justifyContent: "end",
+                }}
+              >
+                <div>
+                  <SearchIcon sx={{ color: "#888" }} />
+                  <InputBase
+                    sx={{ maxWidth: "150px" }}
+                    placeholder="Search..."
+                  />
+                </div>
+                {userLogedIn ? (
+                  <>
+                    <Button onClick={handleMenuOpen}>
+                      <AccountCircle />
+                    </Button>
+                    <Menu
+                      anchorEl={anchorEl}
+                      open={Boolean(anchorEl)}
+                      onClose={handleMenuClose}
+                    >
+                      <MenuItem
+                        sx={{ color: "#000" }}
+                        onClick={handleMenuClose}
+                      >
+                        <Link to={`/Profile`}>Profile</Link>
+                      </MenuItem>
+                      <MenuItem onClick={handleMenuClose}>Settings</MenuItem>
+                      <MenuItem onClick={handleMenuClose}>Sign Out</MenuItem>
+                    </Menu>
+                  </>
+                ) : (
+                  <OrangeButton $w="90px" $h="36px" $m="0" $p="5px">
+                    Login
+                  </OrangeButton>
+                )}
+              </div>
+            </div>
+          )}
+          <Drawer anchor="top" open={mobileOpen} onClose={handleDrawerToggle}>
+            {drawerContent}
+          </Drawer>
+        </Toolbar>
+      </AppBar>
     </div>
   );
 };
 
-export default NavBar;
+export default Navbar;

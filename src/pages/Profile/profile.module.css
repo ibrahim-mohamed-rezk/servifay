@@ -1,0 +1,80 @@
+.avatarSection {
+  margin-top: .75em;
+  padding: .75em;
+}
+
+.avatarUserName {
+  margin-top: 5px;
+}
+
+.avatarWrapper {
+  position: relative;
+}
+
+.hoverOverlay {
+  position: absolute;
+  top: 98%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  background-color: rgba(0, 0, 0, 0.7);
+  color: #fff;
+  padding: 8px;
+  border-radius: 4px;
+  font-size: 14px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  pointer-events: none;
+  border-radius: 50%;
+}
+
+.userInfoCard{
+  border-radius: 5px;
+  width: 68%;
+}
+
+
+.info{
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  width: 100%;
+  border-bottom: 1px solid #9292928e;
+  padding: 5px 0;
+}
+
+.text{
+  display: flex;
+  flex-direction: column;
+}
+
+.userInfoCard label {
+  color: #867d8f;
+  font-weight: 400;
+  display: inline-block;
+  width: 120px;
+}
+
+.userInfoCard span {
+  font-size: 18px;
+  font-weight: 700;
+  line-height: 24px;
+}
+
+.userInfoCard button {
+  background-color: #eee;
+  /* border: 1px solid #602BA3; */
+  border: none;
+  outline: none;
+  border-radius: 5px;
+  padding: 5px 10px;
+  font-size: 12px;
+  cursor: pointer;
+  margin-left: 10px;
+  color: #602BA3;
+  text-decoration: underline;
+}
+
+.userInfoCard button:hover {
+  background-color: #e0c8fe;
+}

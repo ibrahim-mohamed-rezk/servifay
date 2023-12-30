@@ -6,6 +6,8 @@ $br ==> border-radius
 $c ==> color
 $bgc => background-color
 $p ==> padding
+m ==> margin
+fs ==> font-size
 
 
 

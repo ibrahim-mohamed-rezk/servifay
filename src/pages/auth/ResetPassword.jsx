@@ -1,10 +1,10 @@
-import axios from "axios";
 import React, { useEffect, useState } from "react";
 import { useSelector } from "react-redux";
 import { useLocation, useNavigate } from "react-router-dom";
 import OrangeButton from "../../styled-components/buttons/OrangeButton";
 import FormInput from "../../styled-components/inputs/FormInput";
 import styles from "./auth.module.css";
+import backendURL from "../../axios/backend";
 
 const ResetPassword = () => {
   const navigate = useNavigate();
@@ -21,11 +21,8 @@ const ResetPassword = () => {
 
   const handelSubmit = (e) => {
     e.preventDefault();
-    axios
-      .post(
-        `http://18.234.223.101/api/reset/${location.pathname.split("/")[2]}`,
-        pass
-      )
+    backendURL
+      .post(`/reset/${location.pathname.split("/")[2]}`, pass)
       .then(() => {
         navigate("/");
       })

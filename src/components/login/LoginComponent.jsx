@@ -8,6 +8,8 @@ import GoogleIcon from "@mui/icons-material/Google";
 import OrangeButton from "../../styled-components/buttons/OrangeButton";
 import FormInput from "../../styled-components/inputs/FormInput";
 import backendURL from "../../axios/backend";
+import handleGoogleSignIn from "../../firebase/loginWithGoogle";
+import handleFacebookSignIn from "../../firebase/loginWithFacebook";
 
 const Login = () => {
   const [fromData, setFromData] = useState({});
@@ -21,15 +23,49 @@ const Login = () => {
       .then((res) => {
         localStorage.setItem(
           "user",
-          JSON.stringify({ ...res.data.user, isLoggedIn: true })
+          JSON.stringify({ ...res.data.data, isLoggedIn: true })
         );
-        dispatch(setLogin(res.data.user));
+        dispatch(setLogin(res.data.data));
       })
       .then(() => {
         navigate("/");
       })
       .catch((err) => {
         console.log(err);
+      });
+  };
+
+  const googleLogin = () => {
+    handleGoogleSignIn()
+      .then((res) => {
+        localStorage.setItem(
+          "user",
+          JSON.stringify({ ...res.data.data, isLoggedIn: true })
+        );
+        dispatch(setLogin(res.data.data));
+      })
+      .then(() => {
+        navigate("/");
+      })
+      .catch((error) => {
+        console.error("Error occurred:", error);
+      });
+  };
+
+  const facebookLogin = () => {
+    handleFacebookSignIn()
+      .then((res) => {
+        localStorage.setItem(
+          "user",
+          JSON.stringify({ ...res.data.data, isLoggedIn: true })
+        );
+        dispatch(setLogin(res.data.data));
+      })
+      .then(() => {
+        navigate("/");
+      })
+      .catch((error) => {
+        console.error("Error occurred:", error);
       });
   };
 
@@ -53,7 +89,7 @@ const Login = () => {
             />
             <FormInput
               placeholder="Password"
-              type="password"        
+              type="password"
               onChange={(event) => {
                 setFromData((prev) => ({
                   ...prev,
@@ -64,7 +100,6 @@ const Login = () => {
             <Link
               className={`${styles.mobileForgetPassword} ml-50`}
               to={"/forgotPassword-addemail"}
-              
             >
               Forgot password?
             </Link>
@@ -74,20 +109,24 @@ const Login = () => {
           </form>
         </div>
         <div className={styles.loginMobileGoToRejester}>
-          Don't have an account?{" "} 
+          Don't have an account?{" "}
           <Link
-            style={{ color: "#ff9300", textDecoration: "none", display:"inline" }}
+            style={{
+              color: "#ff9300",
+              textDecoration: "none",
+              display: "inline",
+            }}
             to={"/register"}
           >
             Sign up
           </Link>
         </div>
         <div className={styles.authWith}>
-          <div className={styles.authWithChiled}>
+          <div className={styles.authWithChiled} onClick={googleLogin}>
             <GoogleIcon></GoogleIcon>
             <div className={styles.authWithChiledText}>Login With Google</div>
           </div>
-          <div className={styles.authWithChiled}>
+          <div className={styles.authWithChiled} onClick={facebookLogin}>
             <FacebookIcon></FacebookIcon>
             <div className={styles.authWithChiledText}>Login With Facebook</div>
           </div>
