@@ -1,0 +1,18 @@
+to use pseudo classes like :hover
+
+
+import styled from "styled-components";
+
+const FormInput = styled.input`
+  width: ${props => props.$w ? props.$w : "90%"};
+  border: ${props => props.$b ? props.$b : "none"};
+  &:hover{ // all like this
+    border:"none"
+    ...another styles
+  }
+`;
+
+
+export default FormInput
+
+////////////////////////////////////////////////////////////////////////////////////////////

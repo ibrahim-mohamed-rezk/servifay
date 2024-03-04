@@ -1,0 +1,104 @@
+.heroContent{
+    display: flex;
+    width: 100%;
+    align-items: center;
+    justify-content: space-between;
+    background-color: #E0C8FE;
+
+}
+
+.heroLeftImg, .heroRightImg{
+    width: 19%;
+    max-width: 300px;
+    height: 100%;
+}
+
+.heroLeftImg img, .heroRightImg img{
+    width: 100%;
+    height: 100%;
+    
+}
+
+.heroText{
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    padding: 10px;
+    width: 56%;
+}
+
+.heroTextContent{
+    width: 75%;
+    text-align: center;
+}
+
+
+.tagLine{
+    width: 100%;
+    text-align: center;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    container-type: inline-size;
+}
+
+.tagLine ul {
+    list-style: none;
+    display: flex;
+    font-size: 2.5cqw;
+    align-items: center;
+    justify-content: space-around;
+    color: #9EA3B5;
+    width: 60%;
+    gap: 1vw;
+}
+
+.title{
+    text-align: center;
+    container-type: inline-size;
+}
+
+.title h4{
+    color: #fff;
+    font-size: 5cqw;
+    text-align: center;
+}
+
+.feature{
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: 1em;
+    color: #FF9300;
+    container-type: inline-size;
+}
+
+.feature div , .feature div svg{
+    font-size: 2.5cqw;
+}
+
+.highlights{
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: .5em;
+    margin: 1vw auto 0 auto;
+}
+
+.highlights div{
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    gap: .5em;
+    font-size: 1cqw;
+}
+
+.highlights div svg{
+    width: 3cqw;
+}
+
+.highlights div div{
+    display: block;
+    
+}

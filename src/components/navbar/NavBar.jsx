@@ -37,6 +37,11 @@ const Navbar = () => {
   const [mobileOpen, setMobileOpen] = useState(false);
   const [anchorEl, setAnchorEl] = useState(null);
   const userLogedIn = useUserLogin();
+  const pages = [
+    { name: "Home", path: "/" },
+    { name: "Services", path: "services" },
+    { name: "Contact", path: "contact" },
+  ];
 
   const handleMenuOpen = (event) => {
     setAnchorEl(event.currentTarget);
@@ -48,6 +53,11 @@ const Navbar = () => {
 
   const handleDrawerToggle = () => {
     setMobileOpen(!mobileOpen);
+  };
+
+  const handelSignOut = () => {
+    localStorage.removeItem("user");
+    window.location.pathname = "/";
   };
 
   const drawerContent = (
@@ -68,12 +78,12 @@ const Navbar = () => {
         onClose={handleMenuClose}
       >
         <MenuItem onClick={handleMenuClose}>Profile</MenuItem>
-        <MenuItem onClick={handleMenuClose}>Sign Out</MenuItem>
         <MenuItem onClick={handleMenuClose}>Settings</MenuItem>
+        <MenuItem onClick={handleMenuClose}>Sign Out</MenuItem>
       </Menu>
-      {["Page1", "Page2", "Page3", "Page4", "Page5"].map((page, index) => (
+      {pages.map((page, index) => (
         <Button key={index} color="inherit">
-          {page}
+          <Link to={page.path}>{page.name}</Link>
         </Button>
       ))}
     </div>
@@ -130,9 +140,9 @@ const Navbar = () => {
                   gap: "1.5em",
                 }}
               >
-                {["Home", "Services", "Contact"].map((page, index) => (
+                {pages.map((page, index) => (
                   <Button sx={{ color: "#000" }} key={index} color="inherit">
-                    {page}
+                    <Link to={page.path}>{page.name}</Link>
                   </Button>
                 ))}
               </div>
@@ -168,13 +178,17 @@ const Navbar = () => {
                         <Link to={`/Profile`}>Profile</Link>
                       </MenuItem>
                       <MenuItem onClick={handleMenuClose}>Settings</MenuItem>
-                      <MenuItem onClick={handleMenuClose}>Sign Out</MenuItem>
+                      <MenuItem onClick={handleMenuClose}>
+                        <span onClick={handelSignOut}>Sign Out</span>
+                      </MenuItem>
                     </Menu>
                   </>
                 ) : (
-                  <OrangeButton $w="90px" $h="36px" $m="0" $p="5px">
-                    Login
-                  </OrangeButton>
+                  <Link to={"/login"}>
+                    <OrangeButton $w="90px" $h="36px" $m="0" $p="5px">
+                      Login
+                    </OrangeButton>
+                  </Link>
                 )}
               </div>
             </div>
