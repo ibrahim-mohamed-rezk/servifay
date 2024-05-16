@@ -74,7 +74,7 @@ const HeroSecton = () => {
             <div>
               <Location />
               <div>
-                <div>Local US</div>
+                <div>Local EG</div>
                 <div>Professional</div>
               </div>
             </div>

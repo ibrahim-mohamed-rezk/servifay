@@ -41,6 +41,7 @@ const Navbar = () => {
     { name: "Home", path: "/" },
     { name: "Services", path: "services" },
     { name: "Contact", path: "contact" },
+    { name: "Booking", path: "booking/upcomming" },
   ];
 
   const handleMenuOpen = (event) => {

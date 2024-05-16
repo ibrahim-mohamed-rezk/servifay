@@ -1,0 +1,46 @@
+.links{
+    width: 50%;
+    margin: 50px auto;
+}
+
+.links ul{
+    display: flex;
+    align-items: center;
+    justify-content: space-around;
+    list-style: none;
+    text-align: center;
+    
+}
+
+.links ul li{
+    font-size: 22px;
+    font-weight: 600;
+    line-height: 49.22px;    
+}
+
+.active{
+    color: #FF9300;
+}
+
+.orange{
+    color: #FFDBA8;
+}
+
+@media(max-width:992px){
+    .links{
+        width: 70%;
+    }
+}
+
+@media(max-width:770px){
+    .links{
+        width: 100%;
+    }
+    .links ul{
+        justify-content: space-between;
+        padding: 0 10px;
+    }
+    .links ul li{
+        font-size: 18px;
+    }
+}

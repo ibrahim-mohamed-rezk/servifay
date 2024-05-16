@@ -17,13 +17,15 @@ export const authSlice = createSlice({
   reducers: {
     setLogin: (state, action) => {
       state.email = action.payload.email;
-      state.email_active = action.payload.email_active;
+      state.email_active = action.payload.user_auth.email_active;
       state.image = action.payload.image;
       state.name = action.payload.name;
       state.phone = action.payload.phone;
       state.role = action.payload.role;
-      state.token = action.payload.token;
+      state.token = action.payload.user_auth.token;
       state.isloggedin = true;
+      state.governorate = action.payload.user_location.governorate;
+      state.country = action.payload.user_location.country;
     },
   },
 });

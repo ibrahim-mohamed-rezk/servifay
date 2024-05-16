@@ -3,13 +3,12 @@ import { Link, useNavigate } from "react-router-dom";
 import styles from "./login.module.css";
 import { useDispatch } from "react-redux";
 import { setLogin } from "../../store/slices/auth/authSlice";
-import FacebookIcon from "@mui/icons-material/Facebook";
-import GoogleIcon from "@mui/icons-material/Google";
 import OrangeButton from "../../styled-components/buttons/OrangeButton";
-import FormInput from "../../styled-components/inputs/FormInput";
 import backendURL from "../../axios/backend";
 import handleGoogleSignIn from "../../firebase/loginWithGoogle";
 import handleFacebookSignIn from "../../firebase/loginWithFacebook";
+import LoginIllustration from "../../assets/svg/LoginIllustration";
+import GoogleLogniBtn from "../../assets/svg/GoogleLogniBtn";
 
 const Login = () => {
   const [fromData, setFromData] = useState({});
@@ -70,40 +69,63 @@ const Login = () => {
   };
 
   return (
-    <>
-      <div className={`container flex-col-c`}>
+    <div className={styles.loginContainer}>
+      <div className={styles.leftSide}>
+        <h1 className="mt-30">servifay</h1>
+        <LoginIllustration />
+        <h2>Online Community For The daily business</h2>
+      </div>
+      <div className={styles.rightSide}>
         <div className={styles.loginMobileLogo}>logo</div>
-        <div className={styles.loginMobileWelcomeText}>
-          <h2>Welcom back!!!</h2>
-          <p>Welcome back , Do you have account?</p>
+        <h2 className={styles.brawserWelcomeText}>Welcome back </h2>
+        <div className={styles.authWith}>
+          <div className={styles.authWithChiled} onClick={googleLogin}>
+            <GoogleLogniBtn />
+          </div>
+          <div className={styles.authWithChiled} onClick={facebookLogin}>
+            <GoogleLogniBtn />
+          </div>
         </div>
-        <h2 className={styles.brawserWelcomeText}>LOGIN</h2>
-        <div className={styles.loginMobileForm}>
+        <div className={styles.loginForm}>
           <form>
-            <FormInput
-              placeholder="Email"
-              type="text"
-              onChange={(event) => {
-                setFromData((prev) => ({ ...prev, email: event.target.value }));
-              }}
-            />
-            <FormInput
-              placeholder="Password"
-              type="password"
-              onChange={(event) => {
-                setFromData((prev) => ({
-                  ...prev,
-                  password: event.target.value,
-                }));
-              }}
-            />
+            <div className={styles.inputGroup}>
+              <label>Email</label>
+              <input
+                type="text"
+                onChange={(event) => {
+                  setFromData((prev) => ({
+                    ...prev,
+                    email: event.target.value,
+                  }));
+                }}
+              />
+            </div>
+
+            <div className={styles.inputGroup}>
+              <label>Password</label>
+              <input
+                type="password"
+                onChange={(event) => {
+                  setFromData((prev) => ({
+                    ...prev,
+                    password: event.target.value,
+                  }));
+                }}
+              />
+            </div>
+
             <Link
-              className={`${styles.mobileForgetPassword} ml-50`}
+              className={styles.ForgetPassword}
               to={"/forgotPassword-addemail"}
             >
               Forgot password?
             </Link>
-            <OrangeButton type="submit" onClick={handelSubmit}>
+            <OrangeButton
+              $w="50%"
+              $m="0 auto 1.5em auto"
+              type="submit"
+              onClick={handelSubmit}
+            >
               LOGIN
             </OrangeButton>
           </form>
@@ -121,18 +143,8 @@ const Login = () => {
             Sign up
           </Link>
         </div>
-        <div className={styles.authWith}>
-          <div className={styles.authWithChiled} onClick={googleLogin}>
-            <GoogleIcon></GoogleIcon>
-            <div className={styles.authWithChiledText}>Login With Google</div>
-          </div>
-          <div className={styles.authWithChiled} onClick={facebookLogin}>
-            <FacebookIcon></FacebookIcon>
-            <div className={styles.authWithChiledText}>Login With Facebook</div>
-          </div>
-        </div>
       </div>
-    </>
+    </div>
   );
 };
 

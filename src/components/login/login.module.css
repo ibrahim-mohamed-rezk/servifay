@@ -1,53 +1,92 @@
+.loginContainer {
+  display: flex;
+}
+
+.leftSide {
+  width: 50%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  background-image: url("../../assets/images/authPages/loginBg.svg");
+  flex-direction: column;
+  gap: 1em;
+  background-position: center;
+}
+
+.leftSide h2,
+.leftSide h1 {
+  width: 60%;
+  text-align: center;
+  font-weight: bold;
+  color: #fff;
+}
+
+.rightSide {
+  width: 50%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  flex-direction: column;
+}
+
 .loginMobileLogo {
   font-size: xx-large;
   font-weight: 900;
   margin: 100px 0;
 }
 
-.loginMobileWelcomeText h2 {
-  font-weight: 600;
-  text-align: center;
-  color: #2b1448;
-  font-size: 28px;
-  line-height: 40px;
+.brawserWelcomeText {
+  font-size: xx-large;
+  font-weight: 900;
+  margin: 0px 0 20px 0;
 }
 
-.brawserWelcomeText {
+.loginMobileLogo {
   display: none;
 }
 
-.loginMobileWelcomeText p {
-  color: #52485f;
-  font-size: 14px;
-  line-height: 20px;
-  font-weight: 600;
-}
-
-.loginMobileForm {
+.loginForm {
   display: flex;
   width: 100%;
-}
-
-.loginMobileForm form {
-  display: flex;
-  flex-direction: column;
   align-items: center;
   justify-content: center;
-  width: 100%;
-  gap: 1.25em;
-  margin-top: 1em;
 }
 
-.mobileForgetPassword {
+.loginForm form {
+  display: flex;
+  flex-direction: column;
+  margin-top: 1em;
+  width: 50%;
+  gap: 1.75em;
+}
+
+.inputGroup{
+  display: flex;
+  flex-direction: column;
+  width: 100%;
+}
+
+.inputGroup label{
+  color: #757575;
+  font-size: 12px;
+}
+
+.inputGroup input{
+  background-color: #fff;
+  border: none;
+  border-bottom: 1px solid #BDBDBD;
+  outline: none;
+}
+
+.ForgetPassword {
   text-decoration: none;
-  text-align: left;
-  width: 92%;
+  text-align: right;
+  width: 98%;
   color: #1567ff;
 }
 
-.authWith{
+.authWith {
   display: flex;
-  flex-direction: column;
   margin-top: 20px;
   align-items: center;
   justify-content: center;
@@ -55,37 +94,9 @@
   gap: 0.5em;
 }
 
-.authWithChiled{
+.authWithChiled {
   display: flex;
   align-content: center;
-  width: 90%;
   padding: 5px;
-  border: 2px solid #eee;
-  border-radius: 10px;
-  gap: 25%;
   max-width: 450px;
-}
-
-
-/* brawser styles */
-@media (min-width: 768px) {
-
-  .mobileLoginContainer{
-    max-width: 50%;
-  }
-
-  .loginMobileLogo {
-    display: none;
-  }
-
-  .loginMobileWelcomeText {
-    display: none;
-  }
-
-  .brawserWelcomeText {
-    display: block;
-    font-size: xx-large;
-    font-weight: 900;
-    margin: 100px 0 20px 0;
-  }
 }
