@@ -20,7 +20,7 @@
 }
 
 .leftSide h1, .leftSide p{
-    color: #FF9300;
+    color: #fff;
 }
 
 .leftSide p{
@@ -38,7 +38,7 @@
     display: flex;
     justify-content: space-between;
     width: 30%;
-    color: #FF9300;
+    color: #fff;
 }
 
 .rightSide div{
@@ -66,5 +66,5 @@
 
 .copyRights{
     text-align: center;
-    color: #FF9300;
+    color: #fff;
 }
