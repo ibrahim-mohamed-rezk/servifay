@@ -19,11 +19,14 @@
     font-weight: bold;
     font-size: 1.9vw;
     color: #171921;
+    font-family:Acme;
+    letter-spacing: 2px;
 }
 
 .servicesSectionContent div p{
     color: #545971;
-    font-size: .9vw;
+    font-family: Philosopher;
+    font-size: 17px;
 }
 
 
@@ -75,24 +78,25 @@
     margin-top: 5vw;
 }
 
-.ourServicesHeader h4{
+.ourServicesHeader h1{
     color: #171921;
     font-weight: bold;
-    font-size: 1.9vw;
+    font-family: Acme;
 }
 
 .ourServicesHeader p{
     margin: 0 auto;
     width: 75%;
-    color: #545971;
-    font-size: .9vw;
+    color: #474a58;
+    font-size: 18px;
+    font-family: Philosopher;
 }
 
 .ourServices{
     display: grid;
-    grid-template-columns: repeat(auto-fit, minmax(25%, 1fr));
-    grid-gap: 1.5vw;
-    width: 70%;
+    grid-template-columns: repeat(4,1fr);
+    margin-top: 20px;
+    padding: 40px;
 }
 
 .ourServicesChild{
@@ -100,10 +104,12 @@
     flex-direction: column;
     gap: 1vw;
     cursor: pointer;
+    justify-content: center;
+    align-items: center;
 }
 
 .ourServicesChild div{
-    text-align: left;
+    text-align: center;
 }
 
 .ourServicesChild div img {
@@ -113,13 +119,15 @@
 .ourServicesChild div h5{
     color: #171921;
     font-weight: 700;
-    font-size: 1.5vw
+    font-size: 1.5vw;
+    font-family: Acme;
 }
 
 .ourServicesChild div p{
-    font-size: .9vw;
+    font-size: 16px;
     font-weight: 400;
     color: #545971;
+    font-family: Philosopher;
 }
 
 /* how work section styles */
@@ -128,7 +136,7 @@
     display: flex;
     align-items: center;
     justify-content: space-around;
-    margin-top: 7vw;
+    padding: 70px 0px 70px 0px;
 }
 
 .howWorkContainer div{
@@ -145,7 +153,9 @@
     color: #171921;
     font-weight: bold;
     font-size: 2vw;
-    width: 50%;
+    font-family: Acme;
+    margin-bottom: 20px;
+    letter-spacing: 4px;
 }
 
 .steps{
@@ -160,10 +170,12 @@
     width: 100%;
     list-style: none;
     gap: 2vw;
+
 }
 
 .steps ol li{
     width: 100%;
+
 }
 
 .steps ol li div{
@@ -175,21 +187,49 @@
 }
 
 .steps ol li div span:nth-child(1){
-    width: 10%;
-    font-size: 3vw;
+    width: 0%;
+    font-size:2.6vw;
     font-weight: bold;
     color: #9EA3B5;
+    font-family: Philosopher;
 }
 
 .steps ol li div span:nth-child(2){
-    font-size: 1vw;
+    font-size: 20px;
     font-weight: bold;
     color: #171921;
     width: 35%;
+    font-family: Philosopher;
+    margin-left: 20px;
 }
 
 .steps ol li div span{
-    font-size: .8vw;
+    font-size: 15px;
     width: 45%;
     color: #545971;
+    font-family: Philosopher;
+}
+
+@media screen and (min-width:375px) and (max-width:767px) {
+    .ourServices{
+        grid-template-columns: repeat(1,1fr);
+    }
+    .ourServicesChild div img {
+        width: 80px;
+    }
+    
+    .ourServicesChild div h5{
+        font-size:20px;
+    }
+    
+    .ourServicesChild div p{
+        font-size: 16px;
+    }
+}
+@media screen and (min-width:768px) and (max-width:1024px) {}
+@media screen and (min-width:1024px) and (max-width:1440px) {}
+@media screen and (min-width:100px) and (max-width:375px) {
+    .ourServices{
+        grid-template-columns: repeat(1,1fr);
+    }
 }

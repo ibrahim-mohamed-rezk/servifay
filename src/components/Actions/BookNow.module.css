@@ -1,0 +1,248 @@
+.BookingNowImg{
+  width: 100px;
+  border-radius: 50%;
+}
+.BookNowContainer{
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  padding: 100px 0px 50px 0px;
+  /* width: 100%; */
+}
+.BookNowTopDiv{
+  display: flex;
+  gap: 30px;
+  font-family: Philosopher;
+}
+.BookNowTopDiv h3 ,h5{
+  font-family: Philosopher;
+}
+.line{
+  width: 75%;
+}
+.textarea{
+  border-radius: 10px;
+  outline: 2px solid gray;
+  border: 0px;
+}
+.form{
+  display: flex;
+  flex-direction: column;
+}
+.form label{
+  font-family: Philosopher
+}
+.form textarea::placeholder{
+  font-weight: bolder;
+  padding: 10px;
+  font-size: 20px;
+  font-family: Philosopher;
+}
+.BTN{
+  width: 20%;
+}
+.formTwo input{
+  border-radius: 10px;
+  outline: 2px solid gray;
+  padding: 10px;
+  border: 0px;
+  font-family: Philosopher;
+}
+.formTwo label{
+  font-family: Philosopher;
+}
+.formTwo input::placeholder{
+  font-weight: bolder;
+  padding: 10px;
+  font-family: Philosopher;
+}
+.Head{
+  font-family: Philosopher;
+}
+.BookNowBDiv{
+  display: grid;
+  grid-template-columns: repeat(2,1fr);
+  gap: 100px;
+}
+
+/* Rating Component */
+.serviceImg{
+  width: 250px;
+}
+.RatingContainer{
+  display: grid;
+  place-items: center;
+  padding: 30px;
+}
+.ServiceDetail{
+  background-color: white;
+  filter: drop-shadow(2px 2px 2px gray);
+  padding: 10px;
+  width:40%;
+  border-radius: 10px;
+}
+.StarsIcon{
+  display: flex;
+  justify-content: center;
+}
+.WriteFeedback textarea::placeholder{
+  font-weight: bolder;
+  padding: 10px;
+  font-size: 20px;
+  font-family: Philosopher;
+}
+.StarsNum{
+  font-family: Philosopher;
+}
+.BTN1{
+  width: 20%;
+}
+.RatingContainer h4{
+  font-family: Acme;
+  letter-spacing: 2px;
+}
+
+/* cancel Order */
+
+:root{
+  --main-color:#FF9300;
+}
+.cont{
+  display: flex;
+  flex-direction: column;
+  width: 50%;
+  margin: auto;
+  padding: 20px;
+  
+}
+.canselReasons .formCheckInput{
+  border: 1px solid gray;
+}
+.hr{
+  border: 1px solid var(--main-color);
+  margin:  30px 0;
+}
+.textAreaContainer textarea{
+  height:150px;
+  resize: none;
+}
+.header h4{
+  color: #9E9E9E;
+  font-size: 25px;
+  font-weight: 700;
+  font-family: Acm;
+  letter-spacing: 2px;
+}
+.canselReasons label{
+  color:rgba(0,0,0,0.89);
+  font-size: 18px;
+  font-weight: 600;
+  line-height: 18px;
+  font-family: Philosopher;
+}
+.canselReasons{
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+/* media query */
+@media screen and (min-width:375px) and (max-width:767px) {
+  .BookNowBDiv{
+    grid-template-columns: repeat(1,1fr);
+    place-items: center;
+  }
+  .FirstDiv{
+    width: 80%;
+  }
+  .SecondDiv{
+    width: 80%;
+  }
+  .BTN{
+    width: 50%;
+  }
+  .RatingContainer{
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    width: 100%;
+    margin: auto;
+  }
+  .ServiceDetail{
+    width:100%;
+  }
+  .WriteFeedback textarea{
+    width: 100%;
+  }
+  .BTN1{
+    width: 100%;
+  }
+  .cont{
+    width: 100%;
+}
+}
+
+@media screen and (min-width:768px) and (max-width:1024px) {
+  .RatingContainer{
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    width: 100%;
+    margin: auto;
+  }
+  .ServiceDetail{
+    width:75%;
+  }
+  .WriteFeedback textarea{
+    width: 100%;
+  }
+  .BTN1{
+    width: 50%;
+  }
+  .cont{
+    width: 80%;
+}
+.header h4{
+  font-size: 25px;
+  font-weight: bolder;
+}
+}
+@media screen and (min-width:1024px) and (max-width:1440px) {}
+@media screen and (min-width:100px) and (max-width:375px) {
+  .BookNowBDiv{
+    grid-template-columns: repeat(1,1fr);
+    place-items: center;
+  }
+  .FirstDiv{
+    width: 80%;
+  }
+  .SecondDiv{
+    width: 80%;
+  }
+  .BTN{
+    width: 50%;
+  }
+  .RatingContainer{
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    width: 100%;
+    margin: auto;
+  }
+  .ServiceDetail{
+    width:100%;
+  }
+  .WriteFeedback textarea{
+    width: 100%;
+  }
+  .BTN1{
+    width: 100%;
+  }
+  .cont{
+    width:100%;
+}
+}

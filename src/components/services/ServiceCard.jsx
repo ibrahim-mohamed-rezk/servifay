@@ -6,7 +6,7 @@ import LocationNoFill from "../../assets/svg/LocationNoFill";
 import Chat from "../../assets/svg/Chat";
 import Star from "../../assets/svg/Star";
 import { useNavigate } from "react-router-dom";
-
+import { Link } from "react-router-dom";
 const ServiceCard = ({
   service_name,
   id,
@@ -61,7 +61,7 @@ const ServiceCard = ({
               <Chat />
             </div>
           </div>
-          <button className={styles.cardBTN}>Book now</button>
+          <button className={styles.cardBTN} onClick={()=>navigate('/BookNow')}>Book now</button>
         </div>
       </div>
     </div>

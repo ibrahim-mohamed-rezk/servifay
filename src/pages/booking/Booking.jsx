@@ -8,7 +8,7 @@ const Booking = () => {
   const location = useLocation();
 
   return (
-    <div className="container">
+    <div className="container ">
       <div className={styles.links}>
         <ul>
           <Link to="/booking/upcomming">

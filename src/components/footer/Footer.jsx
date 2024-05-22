@@ -4,18 +4,19 @@ import InstagramIcon from "../../assets/svg/InstagramIcon";
 import TwitterIcon from "../../assets/svg/TwitterIcon";
 import YoutubeIcon from "../../assets/svg/YoutubeIcon";
 import styles from "./footer.module.css";
-
+import "bootstrap/dist/css/bootstrap.min.css";
+import { Row , Col } from 'react-bootstrap';
 const Footer = () => {
   return (
     <div className={styles.footerContainer}>
-      <div className={`container ${styles.footerContent}`}>
+      <Row sm={1} md={1} lg={3}  className={`m-3 g-4 ${styles.footerContent}`}>
         <div className={styles.leftSide}>
-          <h1>Servifay</h1>
-          <p>
-            Servifay is your premier destination for top-notch smart home
+          <h1 className="ms-5">Servifay</h1>
+          <p className="ms-5">
+            Servifay is your premier destination for top-notch smart <br/>home
             service and repair.
           </p>
-          <div className={styles.mediaIcons}>
+          <div className={` ms-5 ${styles.mediaIcons}`}>
             <YoutubeIcon />
             <InstagramIcon />
             <FacebookIcon />
@@ -42,9 +43,9 @@ const Footer = () => {
             </ul>
           </div>
         </div>
-      </div>
+      </Row>
       <hr />
-      <p className={styles.copyRights}>©2023 Servifay . All rights reserved</p>
+      <p className={styles.copyRights} >©2023 Servifay . All rights reserved</p>
     </div>
   );
 };

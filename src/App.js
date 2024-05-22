@@ -11,12 +11,14 @@ import AddOTP from "./pages/auth/AddOTP";
 import ResetPassword from "./pages/auth/ResetPassword";
 import VerifayEmail from "./pages/auth/verifayEmail";
 import VerifayEmailAlert from "./components/alerts/muiAlerts/VerifayEmailAlert";
-import Navbar from "./components/navbar/Navbar";
+import Navbar from "./components/navbar/NavBar.jsx";
 import Profile from "./pages/Profile/Profile";
 import Footer from "./components/footer/Footer";
 import Services from "./pages/services/Services";
 import Booking from "./pages/booking/Booking";
-
+import BookNow from "./components/Actions/BookNow.jsx";
+import Rating from "./components/Actions/Rating.jsx";
+import CancelOrder from "./components/Actions/CancelOrder.jsx";
 const App = () => {
   const dispatch = useDispatch();
   const user = useSelector((data) => data.auth);
@@ -56,6 +58,9 @@ const App = () => {
         <Route path="/Profile/:userId" element={<Profile />} />
         <Route path="/services" element={<Services />} />
         <Route path="/booking/:pageName" element={<Booking />} />
+        <Route path="/BookNow" element={<BookNow />} />
+        <Route path="/Rating" element={<Rating />} />
+        <Route path="/CancelOrder" element={<CancelOrder />} />
       </Routes>
       {shouldShowFooter && <Footer />}
     </>

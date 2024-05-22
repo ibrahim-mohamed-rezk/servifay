@@ -44,7 +44,7 @@ const HeroSecton = () => {
               </div>
             </div>
             <OrangeButton
-              className={styles.callToAction}
+              className={` ${styles.callToAction}`}
               $w="fit-content"
               $fs="1.5vw"
               $h="fit-content"

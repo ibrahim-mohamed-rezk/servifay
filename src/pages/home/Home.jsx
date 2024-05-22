@@ -6,7 +6,6 @@ import CheckMark from "../../assets/svg/CheckMark";
 import styles from "./home.module.css";
 import HomeFeature from "../../assets/svg/HomeFeature";
 import ServicesCatigories from "../../components/services/ServicesCatigories";
-
 const Home = () => {
   return (
     <div>
@@ -72,7 +71,7 @@ const Home = () => {
       {/* our services section */}
       <div className={`container ${styles.ourServicesContainer}`}>
         <div className={styles.ourServicesHeader}>
-          <h4>Our Services</h4>
+          <h1>Our Services</h1>
           <p>
             You have problems with leaking pipes, broken wood, and of course you
             need our help!
@@ -89,7 +88,7 @@ const Home = () => {
           <img src={HImage} alt="HImage" />
         </div>
         <div className={styles.howWorkContent}>
-          <h4>How SERVIFAY works?</h4>
+          <h4>How  SERVIFAY <br/> works?</h4>
           <div className={styles.steps}>
             <ol>
               <li>
@@ -123,7 +122,7 @@ const Home = () => {
             </ol>
           </div>
         </div>
-      </div>
+      </div> 
       {/* Review section */}
       {/* <div>
         <h4>Here our original reviews from trusted platform</h4>
@@ -186,7 +185,7 @@ const Home = () => {
             </a>
           </div>
         </div>
-      </div> */}
+      </div>  */}
     </div>
   );
 };
