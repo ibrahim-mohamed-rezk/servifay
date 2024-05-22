@@ -7,11 +7,12 @@ const OrangeButton = styled.button`
   border: none;
   outline: none;
   border-radius: ${(props) => (props.$br ? props.$br : "15px")};
-  padding: ${(props) => (props.$p ? props.$p : "5px 15px")};
+  padding: ${(props) => (props.$p ? props.$p : "5px 20px")};
   color: ${(props) => (props.$c ? props.$c : "#fff")};
   font-weight: bolder;
   line-height: 20px;
-  font-size: ${(props) => (props.$fs ? props.$fs : "18px")};
+  font-size: ${(props) => (props.$fs ? props.$fs : "20px")};
+  font-family: ${(props) => (props.$ff ? props.$ff : "Philosopher")};
   margin: ${(props) => (props.$m ? props.$m : "0.25em 0 1.5em 0")};
 `;
 

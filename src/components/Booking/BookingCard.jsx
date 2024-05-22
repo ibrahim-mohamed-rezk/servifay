@@ -1,7 +1,7 @@
 import Star from "../../assets/svg/Star";
 import LocationNoFill from "../../assets/svg/LocationNoFill";
 import styles from "./bookingCard.module.css";
-
+import { useNavigate } from 'react-router-dom';
 const BookingCard = ({
   date,
   image,
@@ -11,6 +11,7 @@ const BookingCard = ({
   leftBtn,
   rightBtn,
 }) => {
+  const navigate = useNavigate();
   return (
     <div className={styles.cardContainer}>
       <div className={styles.date}>{date}</div>
@@ -34,11 +35,11 @@ const BookingCard = ({
       </div>
       <div className={styles.line}></div>
       <div className={styles.cardBtns}>
-        <button className={styles.leftBtn}>{leftBtn}</button>
-        <button className={styles.rightBtn}>{rightBtn}</button>
+        <button className={styles.leftBtn} onClick={()=>navigate('/Rating')}>{leftBtn}</button>
+        <button className={styles.rightBtn} onClick={()=>navigate('/CancelOrder')}>{rightBtn}</button>
       </div>
     </div>
   );
 };
 
-export default BookingCard;
+export default BookingCard; 

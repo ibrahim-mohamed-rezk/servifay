@@ -98,6 +98,7 @@ const Navbar = () => {
             display: "flex",
             alignItems: "center",
             justifyContent: "space-between",
+            padding:"20px",
           }}
         >
           {isMobile ? (
