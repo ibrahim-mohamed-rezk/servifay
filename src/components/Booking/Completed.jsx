@@ -13,33 +13,7 @@ const Completed = () => {
         rate="4.5"
         leftBtn="Add Rating"
         rightBtn="Re-Book"
-      />
-      <BookingCard
-        date="10 am - March 13, 2024"
-        image={bookingCard}
-        name="ibrahim mohamed"
-        location="Damietta/Egypt"
-        rate="4.5"
-        leftBtn="Reschedule"
-        rightBtn="Cancel"
-      />
-      <BookingCard
-        date="10 am - March 13, 2024"
-        image={bookingCard}
-        name="ibrahim mohamed"
-        location="Damietta/Egypt"
-        rate="4.5"
-        leftBtn="Reschedule"
-        rightBtn="Cancel"
-      />
-      <BookingCard
-        date="10 am - March 13, 2024"
-        image={bookingCard}
-        name="ibrahim mohamed"
-        location="Damietta/Egypt"
-        rate="4.5"
-        leftBtn="Reschedule"
-        rightBtn="Cancel"
+        userId="1"
       />
     </div>
   );

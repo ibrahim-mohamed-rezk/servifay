@@ -59,7 +59,7 @@ const App = () => {
         <Route path="/services" element={<Services />} />
         <Route path="/booking/:pageName" element={<Booking />} />
         <Route path="/BookNow" element={<BookNow />} />
-        <Route path="/Rating" element={<Rating />} />
+        <Route path="/Rating/:userID" element={<Rating />} />
         <Route path="/CancelOrder" element={<CancelOrder />} />
       </Routes>
       {shouldShowFooter && <Footer />}

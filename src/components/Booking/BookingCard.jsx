@@ -10,6 +10,7 @@ const BookingCard = ({
   rate,
   leftBtn,
   rightBtn,
+  userId,
 }) => {
   const navigate = useNavigate();
   return (
@@ -35,8 +36,18 @@ const BookingCard = ({
       </div>
       <div className={styles.line}></div>
       <div className={styles.cardBtns}>
-        <button className={styles.leftBtn} onClick={()=>navigate('/Rating')}>{leftBtn}</button>
-        <button className={styles.rightBtn} onClick={()=>navigate('/CancelOrder')}>{rightBtn}</button>
+        <button
+          className={styles.leftBtn}
+          onClick={() => navigate(`/Rating/${userId}`)}
+        >
+          {leftBtn}
+        </button>
+        <button
+          className={styles.rightBtn}
+          onClick={() => navigate("/CancelOrder")}
+        >
+          {rightBtn}
+        </button>
       </div>
     </div>
   );
