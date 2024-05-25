@@ -13,7 +13,10 @@ import Exprince from "../../assets/svg/Exprince";
 import Erning from "../../assets/svg/Erning";
 import { fetchProfile } from "../../store/slices/profile/profileSlice";
 import useCurrentProfile from "../../hooks/useCurrentProfile";
-// import GoogleMaps from "../../components/maps/GoogleMaps";
+import GoogleMaps from "../../components/maps/GoogleMaps";
+import Review from "../../components/profile/Review";
+import Star from "../../assets/svg/Star";
+
 const Profile = () => {
   const user = useCurrentProfile();
   const navigate = useNavigate();
@@ -29,8 +32,6 @@ const Profile = () => {
       navigate("/login");
     }
   }, [navigate, userLogin]);
-
-  console.log(user.data.specialist_info);
 
   useEffect(() => {
     location.pathname.split("/")[2] !== undefined &&
@@ -151,7 +152,35 @@ const Profile = () => {
           <div className={styles.times}>Saturday 09:00 am - 05:00 pm</div>
         </div>
       </div>
-      {/* <GoogleMaps /> */}
+      <div className={styles.mapAndReviews}>
+        <div className={styles.map}>
+          <GoogleMaps />
+        </div>
+        <div className={styles.reviews}>
+          <div className={styles.head}>
+            <h4>Review</h4>
+            <div className={styles.rate}>
+              <Star />
+              <span>4.5</span>
+            </div>
+          </div>
+          <div className={styles.reviewsContainer}>
+            {user.data.reviews && user.data.reviews.length === 0
+              ? "no reviews yet"
+              : user.data.reviews &&
+                user.data.reviews.map((review, index) => (
+                  <Review key={index} review={review} />
+                ))}
+          </div>
+        </div>
+      </div>
+      <div className={styles.bookNow}>
+        <button
+          onClick={() => navigate(`/BookNow/${user.data.specialist_info?.id}`)}
+        >
+          Book now
+        </button>
+      </div>
     </div>
   );
 };

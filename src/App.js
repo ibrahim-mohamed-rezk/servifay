@@ -57,10 +57,11 @@ const App = () => {
         <Route path="/Profile" element={<Profile />} />
         <Route path="/Profile/:userId" element={<Profile />} />
         <Route path="/services" element={<Services />} />
+        <Route path="/booking/:pageName/:userID" element={<Booking />} />
         <Route path="/booking/:pageName" element={<Booking />} />
-        <Route path="/BookNow" element={<BookNow />} />
+        <Route path="/BookNow/:userID" element={<BookNow />} />
         <Route path="/Rating/:userID" element={<Rating />} />
-        <Route path="/CancelOrder" element={<CancelOrder />} />
+        <Route path="/CancelOrder/:orderID" element={<CancelOrder />} />
       </Routes>
       {shouldShowFooter && <Footer />}
     </>

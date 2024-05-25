@@ -9,6 +9,7 @@ const initialState = {
   role: "",
   token: "",
   isloggedin: false,
+  id: "",
 };
 
 export const authSlice = createSlice({
@@ -17,6 +18,7 @@ export const authSlice = createSlice({
   reducers: {
     setLogin: (state, action) => {
       state.email = action.payload.email;
+      state.id = action.payload.id;
       state.email_active = action.payload.user_auth.email_active;
       state.image = action.payload.image;
       state.name = action.payload.name;

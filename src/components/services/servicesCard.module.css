@@ -54,7 +54,10 @@
 }
 
 .servicesCardInfo .cardUserName .cardUserImage{
-    width: 10%;
+    border-radius: 50%;
+    overflow: hidden;
+    width: 40px;
+    height: 40px;
 }
 
 .servicesCardInfo .cardCategory{

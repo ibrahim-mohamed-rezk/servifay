@@ -1,19 +1,19 @@
-import styles from "./styles.module.css";
 import BookingCard from "./BookingCard";
 import bookingCard from "../../assets/images/booking/bookingCard.png";
-import { useNavigate, useParams } from "react-router-dom";
 import { useEffect, useState } from "react";
-import { useSelector } from "react-redux";
 import backendURL from "../../axios/backend";
+import { useNavigate, useParams } from "react-router-dom";
+import { useSelector } from "react-redux";
+import styles from "./styles.module.css";
 
-const Completed = () => {
+const Watting = () => {
   const params = useParams();
   const [data, setData] = useState([]);
   const user = useSelector((state) => state.auth);
   const navigate = useNavigate();
   useEffect(() => {
     backendURL
-      .get(`/bookings/${params.userID}?status=completed`, {
+      .get(`/bookings/${params.userID}?status=waitting`, {
         headers: {
           Authorization: user.token,
         },
@@ -25,7 +25,6 @@ const Completed = () => {
         console.log(err.message);
       });
   }, [user]);
-
   return (
     <div className={styles.cardsContainer}>
       {data && data.length === 0
@@ -41,12 +40,14 @@ const Completed = () => {
                 name={card.specialist.specialist.name}
                 location={`${card.specialist.specialist.location.governorate}/${card.specialist.specialist.location.country}`}
                 rate={card.specialist.specialist.rating}
-                leftBtn="Add Rating"
-                rightBtn="Re-Book"
-                onclickLBTN={() =>
-                  navigate(`/Rating/${card.specialist.specialist.id}`)
-                }
-                onclickRBTN={() => {}}
+                leftBtn="Chat"
+                rightBtn="Cancel"
+                onclickLBTN={() => {
+                  navigate("/chat");
+                }}
+                onclickRBTN={() => {
+                  navigate(`/CancelOrder/${card.id}`);
+                }}
               />
             );
           })}
@@ -54,4 +55,4 @@ const Completed = () => {
   );
 };
 
-export default Completed;
+export default Watting;
