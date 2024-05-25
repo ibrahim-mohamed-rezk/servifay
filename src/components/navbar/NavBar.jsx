@@ -4,7 +4,6 @@ import {
   Toolbar,
   IconButton,
   Typography,
-  InputBase,
   Menu,
   MenuItem,
   Button,
@@ -13,9 +12,8 @@ import {
   createTheme,
 } from "@mui/material";
 import MenuIcon from "@mui/icons-material/Menu";
-import SearchIcon from "@mui/icons-material/Search";
 import AccountCircle from "@mui/icons-material/AccountCircle";
-import { Link } from "react-router-dom";
+import { Link, useLocation, useNavigate } from "react-router-dom";
 import useUserLogin from "../../hooks/useUserLogin";
 import OrangeButton from "../../styled-components/buttons/OrangeButton";
 
@@ -37,12 +35,14 @@ const Navbar = () => {
   const [mobileOpen, setMobileOpen] = useState(false);
   const [anchorEl, setAnchorEl] = useState(null);
   const userLogedIn = useUserLogin();
+  const navigate = useNavigate();
+  const location = useLocation();
   const pages = [
     { name: "Home", path: "/" },
-    { name: "Services", path: "services" },
-    { name: "ContactUs", path: "ContactUs" },
-    { name: "Booking", path: "booking/upcomming" },
-    { name: "Add Service", path: "AddService" },
+    { name: "Services", path: "/services" },
+    { name: "Contact Us", path: "/ContactUs" },
+    { name: "Booking", path: "/booking/upcomming" },
+    { name: "Add Service", path: "/AddService" },
   ];
 
   const handleMenuOpen = (event) => {
@@ -59,7 +59,8 @@ const Navbar = () => {
 
   const handelSignOut = () => {
     localStorage.removeItem("user");
-    window.location.pathname = "/";
+    navigate("/login");
+    setMobileOpen(false);
   };
 
   const drawerContent = (
@@ -71,20 +72,57 @@ const Navbar = () => {
         justifyContent: "center",
       }}
     >
-      <Button onClick={handleMenuOpen}>
-        <AccountCircle />
-      </Button>
-      <Menu
-        anchorEl={anchorEl}
-        open={Boolean(anchorEl)}
-        onClose={handleMenuClose}
-      >
-        <MenuItem onClick={handleMenuClose}>Profile</MenuItem>
-        <MenuItem onClick={handleMenuClose}>Settings</MenuItem>
-        <MenuItem onClick={handleMenuClose}>Sign Out</MenuItem>
-      </Menu>
+      {userLogedIn ? (
+        <>
+          <Button onClick={handleMenuOpen}>
+            <AccountCircle />
+          </Button>
+          <Menu
+            anchorEl={anchorEl}
+            open={Boolean(anchorEl)}
+            onClose={handleMenuClose}
+          >
+            <MenuItem onClick={handleMenuClose}>Profile</MenuItem>
+            <MenuItem onClick={handleMenuClose}>Settings</MenuItem>
+            <MenuItem
+              onClick={() => {
+                handleMenuClose();
+                handelSignOut();
+              }}
+            >
+              Sign Out
+            </MenuItem>
+          </Menu>
+        </>
+      ) : (
+        <Link to={"/login"}>
+          <OrangeButton
+            $w="100px"
+            $h="36px"
+            $m="15px"
+            $p="5px"
+            onClick={() => {
+              setMobileOpen(false);
+            }}
+          >
+            Login
+          </OrangeButton>
+        </Link>
+      )}
+
       {pages.map((page, index) => (
-        <Button key={index} color="inherit">
+        <Button
+          key={index}
+          style={{
+            color:
+              location.pathname.split("/")[1] === page.path.split("/")[1]
+                ? "#ff9300"
+                : "#000",
+          }}
+          onClick={() => {
+            setMobileOpen(false);
+          }}
+        >
           <Link to={page.path}>{page.name}</Link>
         </Button>
       ))}
@@ -99,7 +137,7 @@ const Navbar = () => {
             display: "flex",
             alignItems: "center",
             justifyContent: "space-between",
-            padding:"20px",
+            padding: "20px",
           }}
         >
           {isMobile ? (
@@ -138,13 +176,24 @@ const Navbar = () => {
 
               <div
                 style={{
-                  width: "30%",
+                  width: "100%",
                   display: "flex",
-                  gap: "1.5em",
+                  justifyContent: "center",
+                  gap: ".5em",
                 }}
               >
                 {pages.map((page, index) => (
-                  <Button sx={{ color: "#000" }} key={index} color="inherit">
+                  <Button
+                    style={{
+                      color:
+                        location.pathname.split("/")[1] ===
+                        page.path.split("/")[1]
+                          ? "#ff9300"
+                          : "#000",
+                    }}
+                    key={index}
+                    color="inherit"
+                  >
                     <Link to={page.path}>{page.name}</Link>
                   </Button>
                 ))}
@@ -157,13 +206,6 @@ const Navbar = () => {
                   justifyContent: "end",
                 }}
               >
-                <div>
-                  <SearchIcon sx={{ color: "#888" }} />
-                  <InputBase
-                    sx={{ maxWidth: "150px" }}
-                    placeholder="Search..."
-                  />
-                </div>
                 {userLogedIn ? (
                   <>
                     <Button onClick={handleMenuOpen}>
