@@ -1,0 +1,59 @@
+/* font-family: Philosopher; */
+.AddService{
+  padding: 50px 20px 50px 20px;
+  max-width: 50%;
+  margin: auto;
+}
+.select{
+  padding: 10px;
+  background-color: #ece9f7;
+  border: none;
+  border-radius: 10px;
+  outline: none;
+  width: 100%;
+}
+.textarea{
+  border-radius: 10px;
+  outline:none;
+  border: 0px;
+  background-color: #ece9f7;
+  margin-top: 20px;
+  padding: 5px 15px;
+  width: 100%;
+}
+.form textarea::placeholder{
+  font-size: 20px;
+  font-family: Philosopher;
+}
+.uploadphoto{
+  background-color:#ece9f7 ;
+  border-radius: 10px;
+}
+.confirmbtn{
+  width: 100%;
+}
+/* media query */
+@media screen and (min-width:375px) and (max-width:767px) {
+  .AddService{
+    padding: 50px 20px 50px 20px;
+    max-width: 100%;
+    margin: auto;
+  }
+
+}
+
+@media screen and (min-width:768px) and (max-width:1024px) {
+  .AddService{
+    padding: 50px 20px 50px 20px;
+    max-width: 90%;
+    margin: auto;
+  }
+}
+@media screen and (min-width:1024px) and (max-width:1440px) {}
+@media screen and (min-width:100px) and (max-width:375px) {
+  .AddService{
+    padding: 50px 20px 50px 20px;
+    max-width: 100%;
+    margin: auto;
+  }
+}

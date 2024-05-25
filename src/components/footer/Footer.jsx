@@ -9,7 +9,7 @@ import { Row , Col } from 'react-bootstrap';
 const Footer = () => {
   return (
     <div className={styles.footerContainer}>
-      <Row sm={1} md={1} lg={3}  className={`m-3 g-4 ${styles.footerContent}`}>
+      <Row sm={1} md={3} lg={3}  className={`m-3 g-4  ${styles.footerContent}`}>
         <div className={styles.leftSide}>
           <h1 className="ms-5">Servifay</h1>
           <p className="ms-5">
@@ -24,8 +24,8 @@ const Footer = () => {
             <EmailIcon />
           </div>
         </div>
-        <div className={styles.rightSide}>
-          <div className={styles.company}>
+        <div className={`me-5 ${styles.footeritem}`}>
+          <div className={`me-5 ${styles.company}`}>
             <h3>Company</h3>
             <ul>
               <li>Services</li>
@@ -33,7 +33,7 @@ const Footer = () => {
               <li>Contact</li>
             </ul>
           </div>
-          <div className={styles.legal}>
+          <div className={`ms-5 ${styles.legal}`}>
             <h3>Legal</h3>
             <ul>
               <li>Terms</li>

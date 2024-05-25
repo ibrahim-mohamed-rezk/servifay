@@ -110,3 +110,81 @@
     display: block;
     
 }
+/*  */
+@media screen and (min-width:375px) and (max-width:767px) {
+    .tagLine ul {
+        justify-content: center;
+        gap: 3vw;
+    }
+    .feature{
+        align-items: start;
+        justify-content:start;
+    }
+    
+    .feature div , .feature div svg{
+        font-size:10cqw;
+    }
+.highlights{
+    margin: 40px 0px 0px 0px;
+    max-width:100%;
+}
+.highlights div svg{
+    width: 3cqw;
+}
+.highlights div{
+    gap: 1em;
+    font-size:9px;
+}
+.heroLeftImg, .heroRightImg{
+    width: 25%;
+}
+}
+@media screen and (min-width:768px) and (max-width:1024px) {
+    .tagLine ul {
+        justify-content: center;
+        gap: 3vw;
+    }
+.feature div , .feature div svg{
+    font-size: 3cqw;
+}
+.highlights{
+    margin: 20px auto;
+    max-width:100%;
+}
+.highlights div svg{
+    width: 3cqw;
+}
+.highlights{
+    position: relative;
+    z-index: 1;
+}
+}
+@media screen and (min-width:1024px) and (max-width:1440px) {}
+@media screen and (min-width:100px) and (max-width:375px) {
+    .tagLine ul {
+        justify-content: center;
+        gap: 3vw;
+    }
+    .feature{
+        align-items: start;
+        justify-content:start;
+    }
+    
+    .feature div , .feature div svg{
+        font-size:10cqw;
+    }
+.highlights{
+    margin: 40px 0px 0px 0px;
+    max-width:100%;
+}
+.highlights div svg{
+    width: 3cqw;
+}
+.highlights div{
+    gap: 1em;
+    font-size:9px;
+}
+.heroLeftImg, .heroRightImg{
+    width: 25%;
+}
+}

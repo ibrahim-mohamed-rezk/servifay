@@ -1,0 +1,59 @@
+/* font-family: Philosopher; */
+.contactus{
+  padding: 50px 20px 50px 20px;
+  max-width: 70%;
+  margin: auto;
+}
+.contactus__h1{
+  color: #ff9300;
+  font-family: Acme;
+}
+.contactus__p{
+  font-family: Philosopher;
+  font-weight: 700;
+}
+.contactus__span{
+  font-family: Philosopher;
+  font-weight: 700;
+}
+.textarea{
+  border-radius: 10px;
+  outline:none;
+  border: 0px;
+  background-color: #ece9f7;
+  margin-top: 20px;
+  padding: 5px 15px;
+  width: 100%;
+}
+.form input{
+  margin-top: 20px;
+  width: 100%;
+}
+.form textarea::placeholder{
+  font-size: 20px;
+  font-family: Philosopher;
+}
+.form input::placeholder{
+  font-size: 20px;
+  font-family: Philosopher;
+}
+
+
+/* media query */
+@media screen and (min-width:375px) and (max-width:767px) {
+  .contactus{
+    max-width: 100%;
+  }
+}
+
+@media screen and (min-width:768px) and (max-width:1024px) {
+  .contactus{
+    max-width: 90%;
+  }
+}
+@media screen and (min-width:1024px) and (max-width:1440px) {}
+@media screen and (min-width:100px) and (max-width:375px) {
+  .contactus{
+    max-width: 100%;
+  }
+}

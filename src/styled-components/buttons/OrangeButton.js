@@ -13,7 +13,7 @@ const OrangeButton = styled.button`
   line-height: 20px;
   font-size: ${(props) => (props.$fs ? props.$fs : "20px")};
   font-family: ${(props) => (props.$ff ? props.$ff : "Philosopher")};
-  margin: ${(props) => (props.$m ? props.$m : "0.25em 0 1.5em 0")};
+  margin: ${(props) => (props.$m ? props.$m : "20px 30px 20px 30px")};
 `;
 
 export default OrangeButton;

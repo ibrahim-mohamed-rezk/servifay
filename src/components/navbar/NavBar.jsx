@@ -40,8 +40,9 @@ const Navbar = () => {
   const pages = [
     { name: "Home", path: "/" },
     { name: "Services", path: "services" },
-    { name: "Contact", path: "contact" },
+    { name: "ContactUs", path: "ContactUs" },
     { name: "Booking", path: "booking/upcomming" },
+    { name: "Add Service", path: "AddService" },
   ];
 
   const handleMenuOpen = (event) => {
