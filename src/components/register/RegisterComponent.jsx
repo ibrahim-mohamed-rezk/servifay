@@ -62,9 +62,9 @@ const Rejester = () => {
           <div className={styles.authWithChiled} onClick={googleLogin}>
             <GoogleLogniBtn />
           </div>
-          <div className={styles.authWithChiled}>
+          {/* <div className={styles.authWithChiled}>
             <GoogleLogniBtn />
-          </div>
+          </div> */}
         </div>
         <div className={styles.loginForm}>
           <form>

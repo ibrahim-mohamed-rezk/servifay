@@ -6,6 +6,7 @@ import CheckMark from "../../assets/svg/CheckMark";
 import styles from "./home.module.css";
 import HomeFeature from "../../assets/svg/HomeFeature";
 import ServicesCatigories from "../../components/services/ServicesCatigories";
+import { Row , Col } from "react-bootstrap";
 const Home = () => {
   return (
     <div>
@@ -53,11 +54,12 @@ const Home = () => {
           </div>
           <div>
             <OrangeButton
-              $w="fit-content"
-              $fs="1vw"
-              $h="fit-content"
-              $m="1.5em auto 1.5em auto"
-              $p=".5vw 2vw"
+              // $w="fit-content"
+              // $fs="1vw"
+              // $h="fit-content"
+              // $m="1.5em auto 1.5em auto"
+              // $p=".5vw 2vw"
+              className={`${styles.btn}`}
             >
               We already 24 hours fast services to help you.
             </OrangeButton>
@@ -84,7 +86,7 @@ const Home = () => {
       <HomeFeature />
       {/* how work section */}
       <div className={`container ${styles.howWorkContainer}`}>
-        <div>
+        <div className=" d-flex  justify-content-center  align-items-center ">
           <img src={HImage} alt="HImage" />
         </div>
         <div className={styles.howWorkContent}>
@@ -123,69 +125,6 @@ const Home = () => {
           </div>
         </div>
       </div> 
-      {/* Review section */}
-      {/* <div>
-        <h4>Here our original reviews from trusted platform</h4>
-        <div>
-          <div
-            id="carouselExampleIndicators"
-            className="carousel slide"
-            data-ride="carousel"
-          >
-            <ol className="carousel-indicators">
-              <li
-                data-target="#carouselExampleIndicators"
-                data-slide-to="0"
-                className="active"
-              ></li>
-              <li
-                data-target="#carouselExampleIndicators"
-                data-slide-to="1"
-              ></li>
-              <li
-                data-target="#carouselExampleIndicators"
-                data-slide-to="2"
-              ></li>
-            </ol>
-            <div className="carousel-inner">
-              <div className="carousel-item active">
-                <img className="d-block w-100" src={HImage} alt="First slide" />
-              </div>
-              <div className="carousel-item">
-                <img
-                  className="d-block w-100"
-                  src={SImage}
-                  alt="Second slide"
-                />
-              </div>
-            </div>
-            <a
-              className="carousel-control-prev"
-              href="#carouselExampleIndicators"
-              role="button"
-              data-slide="prev"
-            >
-              <span
-                className="carousel-control-prev-icon"
-                aria-hidden="true"
-              ></span>
-              <span className="sr-only">Previous</span>
-            </a>
-            <a
-              className="carousel-control-next"
-              href="#carouselExampleIndicators"
-              role="button"
-              data-slide="next"
-            >
-              <span
-                className="carousel-control-next-icon"
-                aria-hidden="true"
-              ></span>
-              <span className="sr-only">Next</span>
-            </a>
-          </div>
-        </div>
-      </div>  */}
     </div>
   );
 };

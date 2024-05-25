@@ -2,6 +2,8 @@ import React, { useEffect } from "react";
 import { Route, Routes, useLocation } from "react-router-dom";
 import "./App.css";
 import Login from "./pages/auth/Login";
+import ContactUs from "./pages/ContactUs/ContactUs.jsx";
+import AddService from "./components/Add Service/AddService.jsx";
 import Home from "./pages/home/Home";
 import Register from "./pages/auth/Register";
 import { useDispatch, useSelector } from "react-redux";
@@ -61,6 +63,8 @@ const App = () => {
         <Route path="/BookNow" element={<BookNow />} />
         <Route path="/Rating/:userID" element={<Rating />} />
         <Route path="/CancelOrder" element={<CancelOrder />} />
+        <Route path="/ContactUs" element={<ContactUs />} />
+        <Route path="/AddService" element={<AddService />} />
       </Routes>
       {shouldShowFooter && <Footer />}
     </>

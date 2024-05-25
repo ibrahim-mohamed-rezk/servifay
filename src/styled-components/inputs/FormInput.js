@@ -6,9 +6,9 @@ const FormInput = styled.input`
   outline: ${props => props.$outl ? props.$outl : "none"};
   height: ${props => props.$h ? props.$h : "48px"};
   background-color: ${props => props.$bgc ? props.$bgc : "#ece9f7"};
-  border-radius: ${props => props.$br ? props.$br : "15px"};
+  border-radius: ${props => props.$br ? props.$br : "10px"};
   padding: ${props => props.$p ? props.$p : "5px 15px"};
 `;
 
 
-export default FormInput
+export default FormInput;

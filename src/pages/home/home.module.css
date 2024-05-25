@@ -5,16 +5,14 @@
     align-items: center;
     justify-content: space-around;
 }
-
 .servicesSectionContent{
     display: flex;
     flex-direction: column;
     align-items: center;
     justify-content: center;
     gap: 1em;
-    width: 35%;
+    width: 45%;
 }
-
 .servicesSectionContent div h4{
     font-weight: bold;
     font-size: 1.9vw;
@@ -22,33 +20,28 @@
     font-family:Acme;
     letter-spacing: 2px;
 }
-
 .servicesSectionContent div p{
     color: #545971;
     font-family: Philosopher;
     font-size: 17px;
 }
-
-
 .services{
     display: flex;
     align-items: center;
     justify-content: space-around;
     gap: 1em;
+    width: 100%;
 }
-
 .services ul{
     list-style: none;
     margin: 0;
     padding: 0;
 }
-
 .services ul li{
     display: flex;
     gap: 3px;
     
 }
-
 .services ul li p, .services ul li svg{
     font-size: 1vw;
     color: #1F3584;
@@ -58,15 +51,12 @@
 .services ul li svg{
     width: 1vw;
 }
-
 .servicesSectionIMG{
     width: 45%;
 }
-
 .servicesSectionIMG img{
     width: 100%;
 }
-
 /* our services styles */
 .ourServicesContainer{
     display: flex;
@@ -210,6 +200,7 @@
     font-family: Philosopher;
 }
 
+/* media query */
 @media screen and (min-width:375px) and (max-width:767px) {
     .ourServices{
         grid-template-columns: repeat(1,1fr);
@@ -225,11 +216,233 @@
     .ourServicesChild div p{
         font-size: 16px;
     }
+    .howWorkContainer{
+        align-items: center;
+        justify-content: center;
+        flex-direction: column;
+        max-width: 90%;
+        margin: auto;
+        padding:50px 0px 50px 0px;
+    }
+    .howWorkContainer div{
+        width: 100%;
+        display: flex;
+        flex-direction: column;
+    }
+    .howWorkContent h4{
+        font-size:30px;
+        text-align: center;
+        margin-top: 20px;
+    }
+    .steps ol{
+        gap:3vw;
+    }
+    .steps ol li div{
+        justify-content: space-between;
+    }
+    .steps ol li div span:nth-child(1){
+        width: 0%;
+        font-size:30px;
+    }
+        /* services section style */
+.servicesSectionContainer{
+    padding: 5vw;
+    display: flex;
+    align-items: center;
+    flex-direction: column-reverse;
+    width: 100%;
+    justify-content: space-around;
 }
-@media screen and (min-width:768px) and (max-width:1024px) {}
+.servicesSectionContent{
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    gap: 1em;
+    width: 100%;
+}
+.servicesSectionContent div h4{
+    font-size: 35px;
+    text-align: center;
+    margin-top: 40px;
+}
+.servicesSectionContent div p{
+    font-size: 22px;
+}
+.services ul li p, .services ul li svg{
+    font-size: 20px;
+}
+
+.services ul li svg{
+    width: 4vw;
+}
+.servicesSectionIMG{
+    width: 80%;
+    margin-top: 50px;
+}
+.servicesSectionIMG img{
+    width: 100%;
+}
+.btn{
+    margin-top: 30px;
+    width: 100%;
+    padding: 200px;
+}
+}
+@media screen and (min-width:768px) and (max-width:1024px) {
+    .howWorkContainer{
+        flex-direction: column;
+        max-width: 90%;
+        margin: auto;
+        padding:50px 0px 50px 0px;
+    }
+    .howWorkContainer div{
+        width: 100%;
+        display: flex;
+        flex-direction: column;
+    }
+    .howWorkContent h4{
+        font-size:35px;
+        text-align: center;
+        margin-top: 20px;
+    }
+    .steps ol{
+        gap:3vw;
+    }
+    .steps ol li div{
+        justify-content: space-between;
+    }
+    .steps ol li div span:nth-child(1){
+        width: 0%;
+        font-size:30px;
+    }
+    .howWorkContainer div img{
+        width:80%;
+    }
+
+    /* services section style */
+.servicesSectionContainer{
+    padding: 5vw;
+    flex-direction: column-reverse;
+    width: 100%;
+}
+.servicesSectionContent{
+    flex-direction: column;
+    width: 100%;
+}
+.servicesSectionContent div h4{
+    font-size: 35px;
+    text-align: center;
+    margin-top: 40px;
+}
+.servicesSectionContent div p{
+    font-size: 22px;
+}
+.services ul li p, .services ul li svg{
+    font-size: 25px;
+}
+
+.services ul li svg{
+    width: 5vw;
+}
+.servicesSectionIMG{
+    width: 80%;
+    margin-top: 50px;
+}
+.servicesSectionIMG img{
+    width: 100%;
+}
+.btn{
+    margin-top: 30px;
+    width: 100%;
+}
+}
 @media screen and (min-width:1024px) and (max-width:1440px) {}
 @media screen and (min-width:100px) and (max-width:375px) {
     .ourServices{
         grid-template-columns: repeat(1,1fr);
     }
+    .ourServicesChild div img {
+        width: 80px;
+    }
+    
+    .ourServicesChild div h5{
+        font-size:20px;
+    }
+    
+    .ourServicesChild div p{
+        font-size: 16px;
+    }
+    .howWorkContainer{
+        align-items: center;
+        justify-content: center;
+        flex-direction: column;
+        max-width: 90%;
+        margin: auto;
+        padding:50px 0px 50px 0px;
+    }
+    .howWorkContainer div{
+        width: 100%;
+        display: flex;
+        flex-direction: column;
+    }
+    .howWorkContent h4{
+        font-size:30px;
+        text-align: center;
+        margin-top: 20px;
+    }
+    .steps ol{
+        gap:3vw;
+    }
+    .steps ol li div{
+        justify-content: space-between;
+    }
+    .steps ol li div span:nth-child(1){
+        width: 0%;
+        font-size:30px;
+    }
+        /* services section style */
+.servicesSectionContainer{
+    padding: 5vw;
+    display: flex;
+    align-items: center;
+    flex-direction: column-reverse;
+    width: 100%;
+    justify-content: space-around;
+}
+.servicesSectionContent{
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    gap: 1em;
+    width: 100%;
+}
+.servicesSectionContent div h4{
+    font-size: 35px;
+    text-align: center;
+    margin-top: 40px;
+}
+.servicesSectionContent div p{
+    font-size: 22px;
+}
+.services ul li p, .services ul li svg{
+    font-size: 20px;
+}
+
+.services ul li svg{
+    width: 4vw;
+}
+.servicesSectionIMG{
+    width: 80%;
+    margin-top: 50px;
+}
+.servicesSectionIMG img{
+    width: 100%;
+}
+.btn{
+    margin-top: 30px;
+    width: 100%;
+    padding: 200px;
+}
 }

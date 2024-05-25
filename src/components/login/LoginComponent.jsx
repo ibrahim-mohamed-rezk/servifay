@@ -82,9 +82,9 @@ const Login = () => {
           <div className={styles.authWithChiled} onClick={googleLogin}>
             <GoogleLogniBtn />
           </div>
-          <div className={styles.authWithChiled} onClick={facebookLogin}>
+          {/* <div className={styles.authWithChiled} onClick={facebookLogin}>
             <GoogleLogniBtn />
-          </div>
+          </div> */}
         </div>
         <div className={styles.loginForm}>
           <form>
