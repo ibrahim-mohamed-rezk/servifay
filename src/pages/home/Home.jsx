@@ -6,7 +6,6 @@ import CheckMark from "../../assets/svg/CheckMark";
 import styles from "./home.module.css";
 import HomeFeature from "../../assets/svg/HomeFeature";
 import ServicesCatigories from "../../components/services/ServicesCatigories";
-import { Row , Col } from "react-bootstrap";
 const Home = () => {
   return (
     <div>

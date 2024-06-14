@@ -16,6 +16,7 @@ import AccountCircle from "@mui/icons-material/AccountCircle";
 import { Link, useLocation, useNavigate } from "react-router-dom";
 import useUserLogin from "../../hooks/useUserLogin";
 import OrangeButton from "../../styled-components/buttons/OrangeButton";
+import { useSelector } from "react-redux";
 
 const theme = createTheme({
   breakpoints: {
@@ -30,6 +31,7 @@ const theme = createTheme({
 });
 
 const Navbar = () => {
+  const user = useSelector((state) => state.auth);
   const isMobile = useMediaQuery(theme.breakpoints.down("sm"));
 
   const [mobileOpen, setMobileOpen] = useState(false);
@@ -41,7 +43,7 @@ const Navbar = () => {
     { name: "Home", path: "/" },
     { name: "Services", path: "/services" },
     { name: "Contact Us", path: "/ContactUs" },
-    { name: "Booking", path: "/booking/upcomming" },
+    { name: "Booking", path: `/booking/upcomming/${user.id}` },
     { name: "Add Service", path: "/AddService" },
   ];
 

@@ -21,6 +21,7 @@ import Booking from "./pages/booking/Booking";
 import BookNow from "./components/Actions/BookNow.jsx";
 import Rating from "./components/Actions/Rating.jsx";
 import CancelOrder from "./components/Actions/CancelOrder.jsx";
+import Chat from "./pages/chat/Chat.jsx";
 const App = () => {
   const dispatch = useDispatch();
   const user = useSelector((data) => data.auth);
@@ -67,6 +68,8 @@ const App = () => {
         <Route path="/CancelOrder" element={<CancelOrder />} />
         <Route path="/ContactUs" element={<ContactUs />} />
         <Route path="/AddService" element={<AddService />} />
+        <Route path="/chat" element={<Chat />} />
+        <Route path="/chat/:chatId" element={<Chat />} />
       </Routes>
       {shouldShowFooter && <Footer />}
     </>

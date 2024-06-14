@@ -1,18 +1,15 @@
 import React, { useEffect } from "react";
 import "bootstrap/dist/css/bootstrap.min.css";
-// import { useNavigate } from 'react-router-dom';
 import OrangeButton from "../../styled-components/buttons/OrangeButton";
 import styles from "./style.module.css";
 import FormInput from "../../styled-components/inputs/FormInput";
 import { useState } from "react";
 import { useDispatch, useSelector } from "react-redux";
-import { useNavigate } from "react-router-dom";
 import { fetchServices } from "../../store/slices/services/servicesSlice";
 
 function AddService() {
   const services = useSelector((data) => data.services.data);
   const dispatch = useDispatch();
-  const navigate = useNavigate();
   // services api
   useEffect(() => {
     dispatch(fetchServices());

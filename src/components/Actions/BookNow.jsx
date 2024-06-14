@@ -45,7 +45,7 @@ function BookNow() {
         <div>
           <img
             src={bookingCard}
-            alt="Booking Now Image"
+            alt="Booking Now"
             className={styles.BookingNowImg}
           />
         </div>
@@ -53,7 +53,7 @@ function BookNow() {
           <h3 className="fw-bolder">Ahmed Mohamed</h3>
           <h3 className="fw-bolder text-secondary ">Carpenter</h3>
           <h5 className=" text-secondary ">
-            <img src="" />
+            <img alt="ll" src="" />
             Damietta/Egypt
           </h5>
         </div>

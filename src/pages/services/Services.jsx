@@ -16,7 +16,6 @@ const Services = () => {
   useEffect(() => {
     filters.search !== "" && dispatch(fetchServiceCard(filters.search));
   }, [dispatch, filters.search]);
-  console.log(serviceCard);
 
   return (
     <div className="container">

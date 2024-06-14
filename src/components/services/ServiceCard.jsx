@@ -6,7 +6,9 @@ import LocationNoFill from "../../assets/svg/LocationNoFill";
 import Chat from "../../assets/svg/Chat";
 import Star from "../../assets/svg/Star";
 import { useNavigate } from "react-router-dom";
-import { Link } from "react-router-dom";
+import { useSelector } from "react-redux";
+import { addToChatHistory } from "../../firebase/chat";
+
 const ServiceCard = ({
   service_name,
   id,
@@ -16,7 +18,9 @@ const ServiceCard = ({
   rating,
   location,
 }) => {
+  const user = useSelector((state) => state.auth);
   const navigate = useNavigate();
+
   return (
     <div>
       <div className={styles.card}>
@@ -57,11 +61,23 @@ const ServiceCard = ({
                 {location.governorate}/{location.country}
               </span>
             </div>
-            <div className={styles.cardChat}>
+            <div
+              onClick={() => {
+                const chatId = [id, user.id].sort((a, b) => a - b).join("_");
+                addToChatHistory(user.id, chatId, id);
+                navigate(`/chat/${chatId}`);
+              }}
+              className={styles.cardChat}
+            >
               <Chat />
             </div>
           </div>
-          <button className={styles.cardBTN} onClick={()=>navigate('/BookNow')}>Book now</button>
+          <button
+            className={styles.cardBTN}
+            onClick={() => navigate(`/BookNow/${id}`)}
+          >
+            Book now
+          </button>
         </div>
       </div>
     </div>

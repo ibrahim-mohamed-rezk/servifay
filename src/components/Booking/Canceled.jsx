@@ -19,16 +19,16 @@ const Canceled = () => {
         },
       })
       .then((res) => {
-        setData(res.data.data);
+        res.data.data ? setData(res.data.data) : setData(res.data);
       })
       .catch((err) => {
         console.log(err.message);
       });
-  }, [user]);
+  }, [user, params.userID]);
   return (
     <div className={styles.cardsContainer}>
       {data && data.length === 0
-        ? "Waitting list empty"
+        ? "Canceled list empty"
         : data.map((card) => {
             return (
               <BookingCard

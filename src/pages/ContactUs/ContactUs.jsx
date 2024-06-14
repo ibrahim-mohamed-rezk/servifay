@@ -1,6 +1,6 @@
 import React from 'react';
 import "bootstrap/dist/css/bootstrap.min.css";
-import { Row , Col ,Button } from 'react-bootstrap';
+import { Row, Col } from "react-bootstrap";
 // import { useNavigate } from 'react-router-dom';
 import OrangeButton from '../../styled-components/buttons/OrangeButton';
 import styles from "./style.module.css";

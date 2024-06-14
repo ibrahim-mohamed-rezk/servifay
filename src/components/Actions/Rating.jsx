@@ -58,9 +58,9 @@ function Rating() {
         <div className="d-flex justify-content-center mt-3 ">
           <img
             src={imageCard}
-            alt="service image"
+            alt="service"
             className={`${styles.serviceImg}`}
-          />{" "}
+          />
         </div>
         <h5 className="mt-3 fw-bolder text-center ">Home maintenance work</h5>
         <p className="text-secondary fw-bolder  text-center ">2 hr</p>

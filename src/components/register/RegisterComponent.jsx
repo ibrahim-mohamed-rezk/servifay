@@ -8,6 +8,8 @@ import { useDispatch } from "react-redux";
 import { setLogin } from "../../store/slices/auth/authSlice";
 import LoginIllustration from "../../assets/svg/LoginIllustration";
 import GoogleLogniBtn from "../../assets/svg/GoogleLogniBtn";
+import { doc, getFirestore, setDoc } from "firebase/firestore";
+import { firebaseConf } from "../../firebase/firebase-init";
 
 const Rejester = () => {
   const [fromData, setFromData] = useState({
@@ -16,13 +18,18 @@ const Rejester = () => {
   });
   const navigate = useNavigate();
   const dispatch = useDispatch();
+  const firestoreDB = getFirestore(firebaseConf);
 
   const handelSubmit = (event) => {
     event.preventDefault();
     backendURL
       .post("/register", fromData)
-      .then(() => {
-        navigate("/login");
+      .then((res) => {
+        setDoc(doc(firestoreDB, "userChats", `${res.data.data.id}`), {
+          chats: [],
+        }).then(() => {
+          navigate("/login");
+        });
       })
       .catch((err) => {
         console.log(err);

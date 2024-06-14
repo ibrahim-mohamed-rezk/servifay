@@ -4,7 +4,7 @@ import useUserLogin from "../../hooks/useUserLogin";
 import styles from "./profile.module.css";
 import { Avatar } from "@mui/material";
 import { CameraAlt } from "@mui/icons-material";
-import { useDispatch, useSelector } from "react-redux";
+import { useDispatch } from "react-redux";
 // import backendURL from "../../axios/backend";
 import LocationNoFill from "../../assets/svg/LocationNoFill";
 import Rating from "../../assets/svg/Rating";

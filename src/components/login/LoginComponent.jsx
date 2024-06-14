@@ -6,7 +6,7 @@ import { setLogin } from "../../store/slices/auth/authSlice";
 import OrangeButton from "../../styled-components/buttons/OrangeButton";
 import backendURL from "../../axios/backend";
 import handleGoogleSignIn from "../../firebase/loginWithGoogle";
-import handleFacebookSignIn from "../../firebase/loginWithFacebook";
+// import handleFacebookSignIn from "../../firebase/loginWithFacebook";
 import LoginIllustration from "../../assets/svg/LoginIllustration";
 import GoogleLogniBtn from "../../assets/svg/GoogleLogniBtn";
 
@@ -51,22 +51,22 @@ const Login = () => {
       });
   };
 
-  const facebookLogin = () => {
-    handleFacebookSignIn()
-      .then((res) => {
-        localStorage.setItem(
-          "user",
-          JSON.stringify({ ...res.data.data, isLoggedIn: true })
-        );
-        dispatch(setLogin(res.data.data));
-      })
-      .then(() => {
-        navigate("/");
-      })
-      .catch((error) => {
-        console.error("Error occurred:", error);
-      });
-  };
+  // const facebookLogin = () => {
+  //   handleFacebookSignIn()
+  //     .then((res) => {
+  //       localStorage.setItem(
+  //         "user",
+  //         JSON.stringify({ ...res.data.data, isLoggedIn: true })
+  //       );
+  //       dispatch(setLogin(res.data.data));
+  //     })
+  //     .then(() => {
+  //       navigate("/");
+  //     })
+  //     .catch((error) => {
+  //       console.error("Error occurred:", error);
+  //     });
+  // };
 
   return (
     <div className={styles.loginContainer}>

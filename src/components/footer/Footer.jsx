@@ -5,7 +5,7 @@ import TwitterIcon from "../../assets/svg/TwitterIcon";
 import YoutubeIcon from "../../assets/svg/YoutubeIcon";
 import styles from "./footer.module.css";
 import "bootstrap/dist/css/bootstrap.min.css";
-import { Row , Col } from 'react-bootstrap';
+import { Row } from "react-bootstrap";
 const Footer = () => {
   return (
     <div className={styles.footerContainer}>
