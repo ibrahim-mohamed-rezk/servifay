@@ -1,4 +1,4 @@
-import React, { useState } from "react";
+import React, { useEffect, useState } from "react";
 import { useNavigate } from "react-router-dom";
 import OrangeButton from "../../styled-components/buttons/OrangeButton";
 import FormInput from "../../styled-components/inputs/FormInput";
@@ -7,6 +7,8 @@ import CountdownTimer from "../../components/countdownTimer/CountdownTimer";
 import { useDispatch, useSelector } from "react-redux";
 import { setLogin } from "../../store/slices/auth/authSlice";
 import backendURL from "../../axios/backend";
+import { toast } from "react-toastify";
+import { FormattedMessage } from "react-intl";
 
 const VerifayEmail = () => {
   const [otp, setOtp] = useState(["", "", "", ""]);
@@ -14,6 +16,13 @@ const VerifayEmail = () => {
   const navigate = useNavigate();
   const dispatch = useDispatch();
   const user = useSelector((data) => data.auth);
+
+  //redirect user to home page if it's logged in
+  useEffect(() => {
+    if (user.email_active === "Yes" || user.isloggedin === false) {
+      navigate("/");
+    }
+  }, [navigate, user.isloggedin, user.token]);
 
   const handleChange = (index, value) => {
     if (/^\d+$/.test(value) || value === "") {
@@ -48,6 +57,7 @@ const VerifayEmail = () => {
           : navigate(`/`);
       })
       .catch(() => {
+        toast.error("verifcation code is not correct");
         setErrMs("verifcation code is not correct");
       });
   };
@@ -55,8 +65,12 @@ const VerifayEmail = () => {
   return (
     <div className={`container flex-col-c mt-100`}>
       <div className={`${styles.forgetPassChilds} flex-col-c`}>
-        <h2>Verify Email</h2>
-        <p>Enter The 4-digits Code</p>
+        <h2>
+          <FormattedMessage id="enterTheVerifyCode" />
+        </h2>
+        <p>
+          <FormattedMessage id="weSentVerificationCodeTo" />
+        </p>
       </div>
       <p style={{ color: "red" }}>{errms}</p>
       <div className={`flex-col-c ${styles.forgetPassChilds}`}>
@@ -80,10 +94,12 @@ const VerifayEmail = () => {
           </div>
           <div className={`${styles.forgetPassChilds} flex-col-c`}>
             <p>
-              The verify code will be expire in
+              <FormattedMessage id="theVerifyCodeWillExpireIn" />
               <CountdownTimer initialTime={120} />
             </p>
-            <p style={{ color: "#0055A5", cursor: "pointer" }}>Resend code</p>
+            <p style={{ color: "#0055A5", cursor: "pointer" }}>
+              <FormattedMessage id="resendCode" />
+            </p>
           </div>
 
           <OrangeButton
@@ -91,7 +107,7 @@ const VerifayEmail = () => {
             type="submit"
             onClick={handelSubmit}
           >
-            CONFIRM
+            <FormattedMessage id="confirm" />
           </OrangeButton>
         </form>
       </div>

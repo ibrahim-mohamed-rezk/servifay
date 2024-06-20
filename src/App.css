@@ -18,10 +18,20 @@ mt-number ==> margin-top equal this number
 a {
   text-decoration: none;
   color: inherit;
+  text-align: inherit;
 }
 
 img{
   width: 100%;
+}
+
+option{
+  font-size: inherit;
+}
+
+/* spinner */
+.ant-spin-dot-item {
+  background-color: #ff9300 !important; 
 }
 
 /* global styles */

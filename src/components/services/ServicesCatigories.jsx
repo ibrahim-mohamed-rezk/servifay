@@ -4,6 +4,7 @@ import { useDispatch, useSelector } from "react-redux";
 import styles from "../../pages/home/home.module.css";
 import { setSearch } from "../../store/slices/services/filtersSlice";
 import { useNavigate } from "react-router-dom";
+import { Spin } from "antd";
 
 const ServicesCatigories = () => {
   const services = useSelector((data) => data.services.data);
@@ -37,7 +38,9 @@ const ServicesCatigories = () => {
           );
         })
       ) : (
-        <div>loading</div>
+        <div>
+          <Spin size="large" />
+        </div>
       )}
     </div>
   );

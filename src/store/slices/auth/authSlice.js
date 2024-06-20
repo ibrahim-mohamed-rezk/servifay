@@ -10,6 +10,7 @@ const initialState = {
   token: "",
   isloggedin: false,
   id: "",
+  is_specialist: null,
 };
 
 export const authSlice = createSlice({
@@ -28,11 +29,28 @@ export const authSlice = createSlice({
       state.isloggedin = true;
       state.governorate = action.payload.user_location.governorate;
       state.country = action.payload.user_location.country;
+      state.is_specialist = action.payload.is_specialist;
+    },
+    setLogOut: (state) => {
+      state.email = "";
+      state.id = "";
+      state.email_active = "";
+      state.image = "";
+      state.name = "";
+      state.phone = "";
+      state.role = "";
+      state.token = "";
+      state.isloggedin = false;
+      state.governorate = "";
+      state.country = "";
+      state.is_specialist = false;
+    },
+    setSpecialist: (state) => {
+      state.is_specialist = true;
     },
   },
 });
 
-// Action creators are generated for each case reducer function
-export const { setLogin } = authSlice.actions;
+export const { setLogin, setLogOut, setSpecialist } = authSlice.actions;
 
 export default authSlice.reducer;

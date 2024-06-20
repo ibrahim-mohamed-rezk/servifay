@@ -60,6 +60,11 @@
     height: 40px;
 }
 
+.servicesCardInfo .cardUserName .cardUserImage img{
+    width: 100%;
+    height: 100%;
+}
+
 .servicesCardInfo .cardCategory{
     margin-top: 10px;
     color: #FF9300;
@@ -70,6 +75,12 @@
     color: #6C6C6C;
     line-height: 15px;
     font-size: 14px;
+    display: -webkit-box;
+    -webkit-box-orient: vertical;
+    -webkit-line-clamp: 2;
+    overflow: hidden;
+    text-overflow: ellipsis;
+    white-space: normal;
 }
 
 .locationAndChat{

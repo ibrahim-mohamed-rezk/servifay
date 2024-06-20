@@ -4,6 +4,7 @@ import Filters from "../../assets/svg/Filters";
 import { useDispatch, useSelector } from "react-redux";
 import { useNavigate } from "react-router-dom";
 import { setSearch } from "../../store/slices/services/filtersSlice";
+import { useIntl } from "react-intl";
 
 const styles = {
   container: {
@@ -31,6 +32,7 @@ const ServicesSearch = ({ setOpenPopup }) => {
   const filters = useSelector((data) => data.filters.data);
   const dispatch = useDispatch();
   const navigate = useNavigate();
+  const intl = useIntl();
   return (
     <div style={styles.container}>
       <div
@@ -48,8 +50,18 @@ const ServicesSearch = ({ setOpenPopup }) => {
         }}
         style={styles.input}
         type="text"
-        placeholder="Search..."
+        placeholder={intl.formatMessage({ id: "search" })}
       />
+      {filters.search !== "" && (
+        <span
+          style={{ margin: "0 10px", fontWeight: "bolder", cursor: "pointer" }}
+          onClick={() => {
+            dispatch(setSearch(""));
+          }}
+        >
+          &#10005;{" "}
+        </span>
+      )}
       <div
         onClick={() => {
           setOpenPopup(true);

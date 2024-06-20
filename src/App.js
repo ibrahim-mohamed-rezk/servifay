@@ -1,4 +1,4 @@
-import React, { useEffect } from "react";
+import React, { useEffect, useState } from "react";
 import { Route, Routes, useLocation } from "react-router-dom";
 import "./App.css";
 import Login from "./pages/auth/Login";
@@ -22,10 +22,15 @@ import BookNow from "./components/Actions/BookNow.jsx";
 import Rating from "./components/Actions/Rating.jsx";
 import CancelOrder from "./components/Actions/CancelOrder.jsx";
 import Chat from "./pages/chat/Chat.jsx";
-const App = () => {
+import { ToastContainer } from "react-toastify";
+import "react-toastify/dist/ReactToastify.css";
+import { useIntl } from "react-intl";
+import echo from "./echo";
+const App = ({ changeLanguage }) => {
   const dispatch = useDispatch();
   const user = useSelector((data) => data.auth);
   const location = useLocation();
+  const { locale } = useIntl();
   const shouldShowFooter = ![
     "/login",
     "/register",
@@ -33,8 +38,26 @@ const App = () => {
     "/forgotPassword-addOTP",
     "/forgotPassword-resetPassword",
   ].includes(location.pathname);
-  //useeffect to check if user is logged in and get data from local storage
-  //and store it in redux state
+
+  const [message, setMessage] = useState("");
+
+  useEffect(() => {
+    const channel = echo.channel("Servifay");
+    channel.listen("ExampleEvent", (event) => {
+      setMessage(event.data);
+    });
+
+    return () => {
+      echo.leaveChannel("Servifay");
+    };
+  }, []);
+
+  console.log(message);
+
+  useEffect(() => {
+    window.scrollTo(0, 0);
+  }, [location]);
+
   useEffect(() => {
     const userStoredData = localStorage.getItem("user");
     if (userStoredData) {
@@ -42,9 +65,30 @@ const App = () => {
     }
   }, [dispatch]);
 
+  useEffect(() => {
+    const loadLocaleCSS = async () => {
+      switch (locale) {
+        case "en":
+          await import("./styles-en.css");
+          break;
+        case "ar":
+          await import("./styles-ar.css");
+          break;
+        case "eg":
+          await import("./styles-ar.css");
+          break;
+        default:
+          await import("./styles-en.css");
+          break;
+      }
+    };
+
+    loadLocaleCSS();
+  }, [locale]);
+
   return (
     <>
-      <Navbar />
+      <Navbar changeLanguage={changeLanguage} />
       {user.email_active === "No" ? <VerifayEmailAlert /> : ""}
       <Routes>
         <Route path="/" element={<Home />} />
@@ -71,6 +115,7 @@ const App = () => {
         <Route path="/chat" element={<Chat />} />
         <Route path="/chat/:chatId" element={<Chat />} />
       </Routes>
+      <ToastContainer />
       {shouldShowFooter && <Footer />}
     </>
   );

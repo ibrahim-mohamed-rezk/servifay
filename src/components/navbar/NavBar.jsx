@@ -16,7 +16,10 @@ import AccountCircle from "@mui/icons-material/AccountCircle";
 import { Link, useLocation, useNavigate } from "react-router-dom";
 import useUserLogin from "../../hooks/useUserLogin";
 import OrangeButton from "../../styled-components/buttons/OrangeButton";
-import { useSelector } from "react-redux";
+import { useDispatch, useSelector } from "react-redux";
+import { setLogOut } from "../../store/slices/auth/authSlice";
+import styles from "./navbar.module.css";
+import { useIntl } from "react-intl";
 
 const theme = createTheme({
   breakpoints: {
@@ -30,9 +33,12 @@ const theme = createTheme({
   },
 });
 
-const Navbar = () => {
+const Navbar = ({ changeLanguage }) => {
+  const lang = useSelector((state) => state.lang);
   const user = useSelector((state) => state.auth);
+  const dispatch = useDispatch();
   const isMobile = useMediaQuery(theme.breakpoints.down("sm"));
+  const intl = useIntl();
 
   const [mobileOpen, setMobileOpen] = useState(false);
   const [anchorEl, setAnchorEl] = useState(null);
@@ -40,11 +46,14 @@ const Navbar = () => {
   const navigate = useNavigate();
   const location = useLocation();
   const pages = [
-    { name: "Home", path: "/" },
-    { name: "Services", path: "/services" },
-    { name: "Contact Us", path: "/ContactUs" },
-    { name: "Booking", path: `/booking/upcomming/${user.id}` },
-    { name: "Add Service", path: "/AddService" },
+    { name: intl.formatMessage({ id: "home" }), path: "/" },
+    { name: intl.formatMessage({ id: "services" }), path: "/services" },
+    { name: intl.formatMessage({ id: "contactUs" }), path: "/ContactUs" },
+    {
+      name: intl.formatMessage({ id: "booking" }),
+      path: `/booking/upcomming/${user.id}`,
+    },
+    { name: intl.formatMessage({ id: "addService" }), path: "/AddService" },
   ];
 
   const handleMenuOpen = (event) => {
@@ -61,7 +70,19 @@ const Navbar = () => {
 
   const handelSignOut = () => {
     localStorage.removeItem("user");
+    dispatch(setLogOut());
     navigate("/login");
+    setMobileOpen(false);
+  };
+
+  const handleLanguageChange = (event) => {
+    changeLanguage(event.target.value);
+    if (event.target.value === "eg") {
+      localStorage.setItem("lang_api", "ar");
+    } else {
+      localStorage.setItem("lang_api", event.target.value);
+    }
+    localStorage.setItem("lang", event.target.value);
     setMobileOpen(false);
   };
 
@@ -112,22 +133,59 @@ const Navbar = () => {
         </Link>
       )}
 
-      {pages.map((page, index) => (
-        <Button
-          key={index}
-          style={{
-            color:
-              location.pathname.split("/")[1] === page.path.split("/")[1]
-                ? "#ff9300"
-                : "#000",
-          }}
-          onClick={() => {
-            setMobileOpen(false);
-          }}
+      {pages.map((page, index) => {
+        if (!user.isloggedin && page.path === "/AddService") {
+          return;
+        }
+        if (user.email_active === "No" && page.path === "/AddService") {
+          return;
+        }
+        if (user.is_specialist && page.path === "/AddService") {
+          return;
+        }
+        if (page.path.includes("booking") && !user.isloggedin) {
+          return;
+        }
+        if (page.path.includes("booking") && user.email_active === "No") {
+          return;
+        }
+        return (
+          <Button
+            key={index}
+            style={{
+              color:
+                location.pathname.split("/")[1] === page.path.split("/")[1]
+                  ? "#ff9300"
+                  : "#000",
+            }}
+            onClick={() => {
+              setMobileOpen(false);
+            }}
+          >
+            <Link to={page.path}>{page.name}</Link>
+          </Button>
+        );
+      })}
+
+      <div
+        style={{
+          fontSize: "14px",
+          textAlign: "center",
+          display: "flex",
+          alignItems: "center",
+          justifyContent: "center",
+        }}
+      >
+        <select
+          className={styles.select}
+          onChange={handleLanguageChange}
+          value={lang.lang}
         >
-          <Link to={page.path}>{page.name}</Link>
-        </Button>
-      ))}
+          <option value={"en"}>EN</option>
+          <option value={"ar"}>AR</option>
+          <option value={"eg"}>EG</option>
+        </select>
+      </div>
     </div>
   );
 
@@ -152,10 +210,10 @@ const Navbar = () => {
               >
                 <MenuIcon />
               </IconButton>
-              <div sx={{ flexGrow: 1 }} />
-
               <Typography variant="h6" sx={{ flexGrow: 1, textAlign: "right" }}>
-                <Link to={"/"}>Logo</Link>
+                <Link className="logo" to={"/"}>
+                  Logo
+                </Link>
               </Typography>
             </>
           ) : (
@@ -184,21 +242,50 @@ const Navbar = () => {
                   gap: ".5em",
                 }}
               >
-                {pages.map((page, index) => (
-                  <Button
-                    style={{
-                      color:
-                        location.pathname.split("/")[1] ===
-                        page.path.split("/")[1]
-                          ? "#ff9300"
-                          : "#000",
-                    }}
-                    key={index}
-                    color="inherit"
-                  >
-                    <Link to={page.path}>{page.name}</Link>
-                  </Button>
-                ))}
+                {pages.map((page, index) => {
+                  if (
+                    !user.isloggedin === true &&
+                    page.path === "/AddService"
+                  ) {
+                    return;
+                  }
+                  if (
+                    user.email_active === "No" &&
+                    page.path === "/AddService"
+                  ) {
+                    return;
+                  }
+                  if (
+                    user.is_specialist === "true" &&
+                    page.path === "/AddService"
+                  ) {
+                    return;
+                  }
+                  if (page.path.includes("booking") && !user.isloggedin) {
+                    return;
+                  }
+                  if (
+                    page.path.includes("booking") &&
+                    user.email_active === "No"
+                  ) {
+                    return;
+                  }
+                  return (
+                    <Button
+                      style={{
+                        color:
+                          location.pathname.split("/")[1] ===
+                          page.path.split("/")[1]
+                            ? "#ff9300"
+                            : "#000",
+                      }}
+                      key={index}
+                      color="inherit"
+                    >
+                      <Link to={page.path}>{page.name}</Link>
+                    </Button>
+                  );
+                })}
               </div>
               <div
                 style={{
@@ -208,6 +295,23 @@ const Navbar = () => {
                   justifyContent: "end",
                 }}
               >
+                <div
+                  style={{
+                    display: "flex",
+                    alignItems: "center",
+                    justifyContent: "center",
+                  }}
+                >
+                  <select
+                    className={styles.select}
+                    onChange={handleLanguageChange}
+                    value={lang.lang}
+                  >
+                    <option value={"en"}>EN</option>
+                    <option value={"ar"}>AR</option>
+                    <option value={"eg"}>EG</option>
+                  </select>
+                </div>
                 {userLogedIn ? (
                   <>
                     <Button onClick={handleMenuOpen}>

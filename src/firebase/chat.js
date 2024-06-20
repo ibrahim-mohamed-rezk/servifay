@@ -1,3 +1,4 @@
+import { toast } from "react-toastify";
 import backendURL from "../axios/backend";
 import { firebaseConf } from "./firebase-init";
 import {
@@ -8,25 +9,25 @@ import {
   query,
   orderBy,
   onSnapshot,
-  collectionGroup,
-  where,
-  getDocs,
   doc,
   updateDoc,
   arrayUnion,
   getDoc,
-  setDoc,
-  FieldValue,
 } from "firebase/firestore";
 
 const firestoreDB = getFirestore(firebaseConf);
 
 export const sendMessage = async (userId, receiverId, message, chatId) => {
-  await addDoc(collection(firestoreDB, `chats/${chatId}/messages`), {
-    ...message,
-    createdAt: serverTimestamp(),
-  });
-  updateLastMessage(userId, message.text, receiverId, chatId);
+  try {
+    await addDoc(collection(firestoreDB, `chats/${chatId}/messages`), {
+      ...message,
+      createdAt: serverTimestamp(),
+    });
+    updateLastMessage(userId, message.text, receiverId, chatId);
+  } catch (err) {
+    toast.error(err.message || "Error submitting rating");
+    toast.error("Error occurred! Please try again.");
+  }
 };
 
 export const getChatMessages = (chatId, callback) => {
@@ -60,7 +61,8 @@ export const getUserChats = (userId, callback, token) => {
             const data = userdata.data.data;
             return { ...item, ...data };
           } catch (err) {
-            console.log(err);
+            toast.error(err.message || "Error submitting rating");
+            toast.error("Error occurred! Please try again.");
           }
         }
       });

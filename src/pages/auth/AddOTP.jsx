@@ -6,6 +6,8 @@ import FormInput from "../../styled-components/inputs/FormInput";
 import styles from "./auth.module.css";
 import CountdownTimer from "../../components/countdownTimer/CountdownTimer";
 import backendURL from "../../axios/backend";
+import { toast } from "react-toastify";
+import { FormattedMessage } from "react-intl";
 
 const AddOTP = () => {
   const [otp, setOtp] = useState(["", "", "", ""]);
@@ -43,20 +45,28 @@ const AddOTP = () => {
     backendURL
       .post(`/otp/${otp.join("")}`)
       .then((res) => {
-        res.data.status === false
-          ? setErrMs("OTP is not correct")
-          : navigate(`/forgotPassword-resetPassword/${otp.join("")}`);
+        if (res.data.status === false) {
+          toast.error("code is not correct");
+          setErrMs("OTP is not correct");
+        } else {
+          toast.success("Success");
+          navigate(`/forgotPassword-resetPassword/${otp.join("")}`);
+        }
       })
       .catch((err) => {
-        console.log(err);
+        toast.error(err.response.data.message || "Error");
       });
   };
 
   return (
     <div className={`container flex-col-c mt-100`}>
       <div className={`${styles.forgetPassChilds} flex-col-c`}>
-        <h2>FORGET PASSWORD</h2>
-        <p>Enter The 4-digits Code</p>
+        <h2>
+          <FormattedMessage id="forgetPassword" />
+        </h2>
+        <p>
+          <FormattedMessage id="enterFourDigitCode" />
+        </p>
       </div>
       <p>{errms}</p>
       <div className={`flex-col-c ${styles.forgetPassChilds}`}>
@@ -80,10 +90,12 @@ const AddOTP = () => {
           </div>
           <div className={`${styles.forgetPassChilds} flex-col-c`}>
             <p>
-              The verify code will be expire in
+              <FormattedMessage id="theVerifyCodeWillExpireIn" />
               <CountdownTimer initialTime={120} />
             </p>
-            <p style={{ color: "#0055A5", cursor: "pointer" }}>Resend code</p>
+            <p style={{ color: "#0055A5", cursor: "pointer" }}>
+              <FormattedMessage id="resendCode" />
+            </p>
           </div>
 
           <OrangeButton
@@ -91,7 +103,7 @@ const AddOTP = () => {
             type="submit"
             onClick={handelSubmit}
           >
-            CONGIRM
+            <FormattedMessage id="confirm" />
           </OrangeButton>
         </form>
       </div>

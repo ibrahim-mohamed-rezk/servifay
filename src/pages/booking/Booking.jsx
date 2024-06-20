@@ -3,12 +3,22 @@ import Completed from "../../components/Booking/Completed";
 import UpComming from "../../components/Booking/UpComming";
 import Watting from "../../components/Booking/Watting";
 import styles from "./booking.module.css";
-import { Link, useLocation } from "react-router-dom";
+import { Link, useLocation, useNavigate } from "react-router-dom";
 import { useSelector } from "react-redux";
+import { FormattedMessage } from "react-intl";
+import { useEffect } from "react";
 
 const Booking = () => {
   const location = useLocation();
+  const navigate = useNavigate();
   const user = useSelector((state) => state.auth);
+
+  //redirect user to home page if it's logged in
+  useEffect(() => {
+    if (user.isloggedin !== true || user.token === "") {
+      navigate("/");
+    }
+  }, [navigate, user.isloggedin, user.token]);
 
   return (
     <div className="container ">
@@ -22,7 +32,7 @@ const Booking = () => {
                   : styles.orange
               }
             >
-              Waitting
+              <FormattedMessage id="waitting" />
             </li>
           </Link>
           <Link to={`/booking/upcomming/${user.id}`}>
@@ -33,7 +43,7 @@ const Booking = () => {
                   : styles.orange
               }
             >
-              Upcoming
+              <FormattedMessage id="upcoming" />
             </li>
           </Link>
           <Link to={`/booking/completed/${user.id}`}>
@@ -44,7 +54,7 @@ const Booking = () => {
                   : styles.orange
               }
             >
-              Completed
+              <FormattedMessage id="completed" />
             </li>
           </Link>
           <Link to={`/booking/canceled/${user.id}`}>
@@ -55,7 +65,7 @@ const Booking = () => {
                   : styles.orange
               }
             >
-              Canceled
+              <FormattedMessage id="canceled" />
             </li>
           </Link>
         </ul>

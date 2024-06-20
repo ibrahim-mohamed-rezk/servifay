@@ -1,77 +1,70 @@
-.footerContainer{
-    background-color: #602BA3;
-    padding: 10px 0px 20px 0px;
-}
-.footerContent{
-    display: flex;
-    align-items: center;
-    justify-content: space-between;
-}
-.leftSide{
-    margin-bottom: 30px;
-}
-.leftSide h1, .leftSide p{
-    color: #fff;
+.footerContainer {
+  background-color: #602ba3;
+  padding: 10px 0px 20px 0px;
 }
 
-.leftSide p{
-    font-size: 16px;
-    font-family:Philosopher;
-}
-.footeritem{
-    display: flex;
-    justify-content: center;
-}
-.leftSide .mediaIcons{
-    display: flex;
-    align-items: center;
-    gap: 30px;
-}
-.company h3{
-    color: #fff;
-    font-family:Philosopher;
-    font-weight: bolder;
+.footerContent {
+  display: flex;
+  align-items: flex-start;
+  justify-content: space-between;
+  gap: 20px;
+  padding: 0 20px;
+  flex-direction: row;
+  color: #fff;
 }
 
-.company ul{
-    list-style: none;
-    text-align: left;
-    padding: 0;
-    font-size: 18px;
-    line-height: 30px;
-}
-.company ul li{
-    font-family:Philosopher;
-    color: #fff;
+.leftSide {
+  margin-bottom: 30px;
 }
 
-.legal h3{
-    color: #fff;
-    font-family:Philosopher;
-    font-weight: bolder;
+.footeritem {
+  display: flex;
+  justify-content: space-between; 
 }
 
-.legal ul{
-    list-style: none;
-    text-align: left;
-    padding: 0;
-    font-size: 18px;
-    line-height: 30px;
-}
-.legal ul li{
-    font-family:Philosopher;
-    color: #fff;
+.leftSide .mediaIcons {
+  display: flex;
+  align-items: center;
+  gap: 30px;
 }
 
-.footerContainer hr{
-    color: #fff;
+.company h3,
+.legal h3 {
+  color: #fff;
+  font-family: Philosopher;
+  font-weight: bolder;
+  margin-bottom: 10px; /* Bottom margin for headings */
 }
 
-.copyRights{
-    text-align: center;
-    color: #fff;
-    color: #FFf;
-    margin-top: 30px;
-    font-family:Philosopher;
-    font-size: 20px;
+.company ul,
+.legal ul {
+  list-style: none;
+  padding: 0;
+  font-size: 18px;
+  line-height: 30px;
+}
+
+.company ul li,
+.legal ul li {
+  font-family: Philosopher;
+  color: #fff;
+}
+
+.footerContainer hr {
+  border-color: #fff; /* Adjusted border color */
+}
+
+.copyRights {
+  text-align: center;
+  color: #fff;
+  margin-top: 30px;
+  font-family: Philosopher;
+  font-size: 20px;
+}
+
+@media screen and (max-width: 768px) {
+  .footerContent {
+    flex-direction: column; /* Stack items vertically on small screens */
+    align-items: center; /* Center align items */
+  }
 }

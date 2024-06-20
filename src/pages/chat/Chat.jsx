@@ -14,6 +14,7 @@ import backendURL from "../../axios/backend";
 import { MessageBox } from "react-chat-elements";
 import "react-chat-elements/dist/main.css";
 import bertURL from "../../axios/bert";
+import { toast } from "react-toastify";
 
 const Chat = () => {
   const user = useSelector((state) => state.auth);
@@ -24,6 +25,7 @@ const Chat = () => {
   const [currentChat, setCurrentChat] = useState({});
   const navigate = useNavigate();
   const reff = useRef(null);
+  const iputReff = useRef(null);
 
   useEffect(() => {
     if (reff.current) {
@@ -69,7 +71,8 @@ const Chat = () => {
             setCurrentChat(res.data.data);
           })
           .catch((err) => {
-            console.log(err);
+            toast.error(err.message || "Error");
+            toast.error("Error occurred! Please try again.");
           });
       }
     }
@@ -89,24 +92,29 @@ const Chat = () => {
         }
       )
       .then((res) => {
-        console.log(res);
+        sendMessage(
+          user.id,
+          chatId.split("_").find((id) => id !== user.id),
+          {
+            text: newMessage,
+            senderId: user.id,
+            user2: chatId.split("_").find((id) => id !== user.id),
+            participants: [
+              chatId.split("_").find((id) => id !== user.id),
+              user.id,
+            ],
+            onPlatform: res.data.classification === "On-platform",
+          },
+          chatId
+        );
       })
       .catch((err) => {
-        console.log(err);
+        toast.error(err.message || "Error");
+        toast.error("Error occurred! Please try again.");
       });
 
-    sendMessage(
-      user.id,
-      chatId.split("_").find((id) => id !== user.id),
-      {
-        text: newMessage,
-        senderId: user.id,
-        user2: chatId.split("_").find((id) => id !== user.id),
-        participants: [chatId.split("_").find((id) => id !== user.id), user.id],
-      },
-      chatId
-    );
     setNewMessage("");
+    iputReff.current.focus();
   };
 
   return (
@@ -129,7 +137,7 @@ const Chat = () => {
               />
               <div className={styles.texts}>
                 <span>{currentChat?.name}</span>
-                <p>{currentChat?.role || "user"}</p>
+                <p>{currentChat?.type || "user"}</p>
               </div>
             </div>
           </div>
@@ -157,8 +165,11 @@ const Chat = () => {
                       text={message.text}
                       date={new Date(message.createdAt?.seconds * 1000)}
                       styles={{
-                        background:
-                          message.senderId === user.id ? "#ff9300" : "#e9eaed",
+                        background: message.onPlatform
+                          ? message.senderId === user.id
+                            ? "#ff9300"
+                            : "#e9eaed"
+                          : "red",
                       }}
                     />
                   </p>
@@ -174,6 +185,7 @@ const Chat = () => {
                 placeholder={"Type a message..."}
                 value={newMessage}
                 onChange={(e) => setNewMessage(e.target.value)}
+                ref={iputReff}
               />
 
               <button

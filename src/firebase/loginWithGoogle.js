@@ -3,16 +3,19 @@ import { getAuth, signInWithPopup, GoogleAuthProvider } from "firebase/auth";
 import backendURL from "../axios/backend.js";
 import { firebaseConf } from "./firebase-init.js";
 
-const handleGoogleSignIn = () => {
+const handleGoogleSignIn = async () => {
   const provider = new GoogleAuthProvider(firebaseConf);
   const auth = getAuth();
 
   return signInWithPopup(auth, provider)
     .then((result) => {
-      return backendURL.get(`/login/google/callback/${result.user.uid}`);
+      const data = backendURL.post(
+        `/login/google/callback/${result.user.uid}`,
+        { country_id: 1, governorate_id: 10 }
+      );
+      return data;
     })
     .catch((error) => {
-      console.log(error);
       throw error;
     });
 };

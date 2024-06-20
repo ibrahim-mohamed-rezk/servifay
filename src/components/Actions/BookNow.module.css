@@ -1,5 +1,6 @@
 .BookingNowImg{
   width: 100px;
+  height: 100px;
   border-radius: 50%;
 }
 .BookNowContainer{
@@ -7,14 +8,19 @@
   flex-direction: column;
   justify-content: center;
   align-items: center;
-  padding: 100px 0px 50px 0px;
-  /* width: 100%; */
+  padding: 50px 0px ;
+  width: 50%;
+  margin: 0 auto;
 }
 .BookNowTopDiv{
   display: flex;
   gap: 30px;
   font-family: Philosopher;
+  align-items: center;
+  width: 100%;
+  justify-content: center;
 }
+
 .BookNowTopDiv h3 ,h5{
   font-family: Philosopher;
 }

@@ -11,7 +11,6 @@ const handleFacebookSignIn = () => {
       return backendURL.get(`/login/facebook/callback/${result.user.uid}`);
     })
     .catch((error) => {
-      console.log(error);
       throw error;
     });
 };

@@ -36,7 +36,7 @@
     width: 100%;
     border-top: 1px solid #dbdde1;
     overflow-y: scroll;
-  
+    width: 100%;
     
   }
   
@@ -46,6 +46,7 @@
     gap: 8px;
     padding: 10px;
     border-bottom: 1px solid #dbdde1;
+    width: 100%;
   }
   
   .cardImage {
@@ -73,5 +74,11 @@
   .lastMsg {
     font-size: 14px;
     color: #747881;
+  }
+
+  .type{
+    font-size: 12px;
+    color: #747881c9;
+    margin-left: auto;
   }
   

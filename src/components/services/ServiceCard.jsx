@@ -8,10 +8,13 @@ import Star from "../../assets/svg/Star";
 import { useNavigate } from "react-router-dom";
 import { useSelector } from "react-redux";
 import { addToChatHistory } from "../../firebase/chat";
+import { FormattedMessage } from "react-intl";
+import { toast } from "react-toastify";
 
 const ServiceCard = ({
   service_name,
   id,
+  specialist_id,
   name,
   description,
   image,
@@ -46,7 +49,15 @@ const ServiceCard = ({
             </div>
             <span
               onClick={() => {
-                navigate(`/Profile/${id}`);
+                if (!user.isloggedin) {
+                  toast.warning("Please Login to Continue");
+                  return;
+                }
+                if (user.email_active === "No") {
+                  toast.warning("Please Active your Email");
+                  return;
+                }
+                navigate(`/Profile/${specialist_id}`);
               }}
             >
               {name}
@@ -63,6 +74,14 @@ const ServiceCard = ({
             </div>
             <div
               onClick={() => {
+                if (!user.isloggedin) {
+                  toast.warning("Please Login to Continue");
+                  return;
+                }
+                if (user.email_active === "No") {
+                  toast.warning("Please Active your Email");
+                  return;
+                }
                 const chatId = [id, user.id].sort((a, b) => a - b).join("_");
                 addToChatHistory(user.id, chatId, id);
                 navigate(`/chat/${chatId}`);
@@ -74,9 +93,19 @@ const ServiceCard = ({
           </div>
           <button
             className={styles.cardBTN}
-            onClick={() => navigate(`/BookNow/${id}`)}
+            onClick={() => {
+              if (!user.isloggedin) {
+                toast.warning("Please Login to Continue");
+                return;
+              }
+              if (user.email_active === "No") {
+                toast.warning("Please Active your Email");
+                return;
+              }
+              navigate(`/BookNow/${specialist_id}`);
+            }}
           >
-            Book now
+            <FormattedMessage id="bookNow" />
           </button>
         </div>
       </div>

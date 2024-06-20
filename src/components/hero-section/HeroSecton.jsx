@@ -1,4 +1,5 @@
 import React from "react";
+import { FormattedMessage } from "react-intl";
 import styles from "./heroSection.module.css";
 import LIMG from "../../assets/images/heroSectionImages/Image.png";
 import RIMG from "../../assets/images/heroSectionImages/RImage.png";
@@ -9,8 +10,12 @@ import Clock from "../../assets/svg/Clock";
 import Location from "../../assets/svg/Location";
 import Calender from "../../assets/svg/Calender";
 import Divider from "@mui/material/Divider";
+import { useSelector } from "react-redux";
+import { useNavigate } from "react-router-dom";
 
-const HeroSecton = () => {
+const HeroSection = () => {
+  const user = useSelector((state) => state.auth);
+  const navigate = useNavigate();
   return (
     <div className={styles.heroContainer}>
       <div className={styles.heroContent}>
@@ -22,24 +27,34 @@ const HeroSecton = () => {
             <div className={styles.content}>
               <div className={styles.tagLine}>
                 <ul>
-                  <li>Maintenances</li>
-                  <li>Repairs </li>
-                  <li>Improvements</li>
+                  <li>
+                    <FormattedMessage id="maintenance" />
+                  </li>
+                  <li>
+                    <FormattedMessage id="repairs" />
+                  </li>
+                  <li>
+                    <FormattedMessage id="improvements" />
+                  </li>
                 </ul>
               </div>
               <div className={styles.title}>
                 <h4>
-                  Need improvement or repair your home? <br /> we can help!
+                  <FormattedMessage id="heroSectionTitle" />
                 </h4>
               </div>
               <div className={styles.feature}>
                 <div>
                   <CheckIcon />
-                  <span> Free Quotes</span>
+                  <span>
+                    <FormattedMessage id="freeQuotes" />
+                  </span>
                 </div>
                 <div>
                   <CheckIcon />
-                  <span> 100% Commitment-Free </span>
+                  <span>
+                    <FormattedMessage id="commitmentFree" />
+                  </span>
                 </div>
               </div>
             </div>
@@ -50,40 +65,48 @@ const HeroSecton = () => {
               $h="fit-content"
               $m="1.5em auto 1.5em auto"
               $p=".5vw 2vw"
+              onClick={() => {
+                user.isloggedin ? navigate("/services") : navigate("/login");
+              }}
             >
-              Get Started
+              <FormattedMessage id="getStarted" />
             </OrangeButton>
           </div>
           <div className={styles.highlights}>
             <div>
               <Verification />
               <div>
-                <div>Satisfaction</div>
-                <div>Guarantee</div>
+                <div>
+                  <FormattedMessage id="satisfaction" />
+                </div>
+                <div></div>
               </div>
             </div>
             <Divider orientation="vertical" variant="middle" flexItem />
             <div>
               <Clock />
               <div>
-                <div>24H</div>
-                <div>Availability</div>
+                <div>
+                  <FormattedMessage id="availability" />
+                </div>
               </div>
             </div>
             <Divider orientation="vertical" variant="middle" flexItem />
             <div>
               <Location />
               <div>
-                <div>Local EG</div>
-                <div>Professional</div>
+                <div>
+                  <FormattedMessage id="localProfessional" />
+                </div>
               </div>
             </div>
             <Divider orientation="vertical" variant="middle" flexItem />
             <div>
               <Calender />
               <div>
-                <div>Flexible</div>
-                <div>Appointments</div>
+                <div>
+                  <FormattedMessage id="flexibleAppointments" />
+                </div>
               </div>
             </div>
           </div>
@@ -96,4 +119,4 @@ const HeroSecton = () => {
   );
 };
 
-export default HeroSecton;
+export default HeroSection;

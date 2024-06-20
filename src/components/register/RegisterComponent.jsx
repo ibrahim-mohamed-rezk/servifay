@@ -8,8 +8,9 @@ import { useDispatch } from "react-redux";
 import { setLogin } from "../../store/slices/auth/authSlice";
 import LoginIllustration from "../../assets/svg/LoginIllustration";
 import GoogleLogniBtn from "../../assets/svg/GoogleLogniBtn";
-import { doc, getFirestore, setDoc } from "firebase/firestore";
+import { doc, getDoc, getFirestore, setDoc } from "firebase/firestore";
 import { firebaseConf } from "../../firebase/firebase-init";
+import { toast } from "react-toastify";
 
 const Rejester = () => {
   const [fromData, setFromData] = useState({
@@ -28,28 +29,52 @@ const Rejester = () => {
         setDoc(doc(firestoreDB, "userChats", `${res.data.data.id}`), {
           chats: [],
         }).then(() => {
+          toast.success("User Create Account Successfully");
           navigate("/login");
         });
       })
-      .catch((err) => {
-        console.log(err);
+      .catch((error) => {
+        toast.error(error.message || "Error ");
+        toast.error("Error occurred! Please try again.");
       });
   };
 
   const googleLogin = () => {
     handleGoogleSignIn()
       .then((res) => {
-        localStorage.setItem(
-          "user",
-          JSON.stringify({ ...res.data.data, isLoggedIn: true })
-        );
-        dispatch(setLogin(res.data.data));
-      })
-      .then(() => {
-        navigate("/");
+        const userId = res.data.data.id;
+        const userDocRef = doc(firestoreDB, "userChats", `${userId}`);
+
+        getDoc(userDocRef)
+          .then((docSnapshot) => {
+            if (docSnapshot.exists()) {
+              console.log("User document already exists, skipping update");
+            } else {
+              setDoc(userDocRef, { chats: [] })
+                .then(() => {
+                  console.log("User document created successfully");
+                })
+                .catch((error) => {
+                  console.error("Error creating user document:", error);
+                });
+            }
+
+            localStorage.setItem(
+              "user",
+              JSON.stringify({ ...res.data.data, isLoggedIn: true })
+            );
+            dispatch(setLogin(res.data.data));
+            toast.success("User account created successfully");
+            navigate("/");
+          })
+          .catch((error) => {
+            console.error("Error fetching user document:", error);
+            toast.error(error.message || "Error occurred! Please try again.");
+          });
       })
       .catch((error) => {
-        console.error("Error occurred:", error);
+        console.error("Error signing in with Google:", error);
+        toast.error(error.message || "Error occurred! Please try again.");
       });
   };
 

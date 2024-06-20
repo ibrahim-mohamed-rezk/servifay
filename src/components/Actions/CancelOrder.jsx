@@ -4,6 +4,8 @@ import OrangeButton from "../../styled-components/buttons/OrangeButton";
 import backendURL from "../../axios/backend";
 import { useNavigate, useParams } from "react-router-dom";
 import { useSelector } from "react-redux";
+import { toast } from "react-toastify";
+import { FormattedMessage, useIntl } from "react-intl";
 
 function CancelOrder() {
   const [selectedReason, setSelectedReason] = useState("");
@@ -11,6 +13,7 @@ function CancelOrder() {
   const params = useParams();
   const user = useSelector((state) => state.auth);
   const navigate = useNavigate();
+  const intl = useIntl();
 
   const handleReasonChange = (e) => {
     setSelectedReason(e.target.value);
@@ -21,8 +24,13 @@ function CancelOrder() {
   };
 
   const handleSubmit = async () => {
-    backendURL
-      .post(
+    try {
+      if (!user || !user.token) {
+        toast.error("Invalid user token");
+        return;
+      }
+
+      await backendURL.post(
         `/bookings/${params.orderID}/cancel`,
         {
           reason: selectedReason,
@@ -31,13 +39,15 @@ function CancelOrder() {
         {
           headers: { Authorization: user.token },
         }
-      )
-      .then(() => {
-        navigate(`/booking/canceled/${user.id}`);
-      })
-      .catch((err) => {
-        console.log(err.message);
-      });
+      );
+
+      toast.success("Order cancelled successfully");
+
+      navigate(`/booking/canceled/${user.id}`);
+    } catch (err) {
+      toast.error(err.message || "Unknown error occurred!");
+      toast.error("Error occurred! Please try again.");
+    }
   };
 
   return (
@@ -46,7 +56,9 @@ function CancelOrder() {
         <div className={`row ${styles.header}`}>
           <div className="col-12 m-auto mb-3">
             <div>
-              <h4>Why do you want to cancel this specialist's reservation?</h4>
+              <h4>
+                <FormattedMessage id="whyDoYouWantToCancel" />
+              </h4>
             </div>
           </div>
         </div>
@@ -71,16 +83,18 @@ function CancelOrder() {
                   onChange={handleReasonChange}
                 ></input>
                 <label htmlFor={id} className="ms-2">
-                  {
-                    [
-                      "Have you experienced changes in your personal circumstances?",
-                      "Did you encounter a problem with the service?",
-                      "Have you discovered better options for you?",
-                      "Are you facing unexpected financial problems?",
-                      "Travel plans",
-                      "Another reason",
-                    ][index]
-                  }
+                  <FormattedMessage
+                    id={
+                      [
+                        "haveYouExperiencedChanges",
+                        "didYouEncounterProblemWithService",
+                        "haveYouDiscoveredBetterOptions",
+                        "unexpectedFinancialProblems",
+                        "travelPlans",
+                        "anotherReason",
+                      ][index]
+                    }
+                  />
                 </label>
               </div>
             ))}
@@ -95,7 +109,7 @@ function CancelOrder() {
                 className="form-control"
                 name="reason"
                 id="writen-reason"
-                placeholder="Add reason here"
+                placeholder={intl.formatMessage({ id: "addReasonHere" })}
                 value={additionalReason}
                 onChange={handleAdditionalReasonChange}
               ></textarea>
@@ -106,7 +120,9 @@ function CancelOrder() {
         <div
           className={`d-flex justify-content-center align-items-center mt-5 ms-4 ${styles.BTN2}`}
         >
-          <OrangeButton onClick={handleSubmit}>Confirm</OrangeButton>
+          <OrangeButton onClick={handleSubmit}>
+            <FormattedMessage id="confirm" />
+          </OrangeButton>
         </div>
       </div>
     </div>

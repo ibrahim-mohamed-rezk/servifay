@@ -1,12 +1,9 @@
-import React, { useState } from "react";
 import styles from "./chatList.module.css";
 import searchImage from "../../assets/images/search.png";
 import usrImg from "../../assets/images/profile/avatar.png";
-import { Link, useNavigate } from "react-router-dom";
+import { Link } from "react-router-dom";
 
 const UsersList = ({ chats = [] }) => {
-  const navigate = useNavigate();
-
   return (
     <>
       {/* Search */}
@@ -20,28 +17,26 @@ const UsersList = ({ chats = [] }) => {
       <div className={styles.usersSection}>
         {chats.length > 0 ? (
           chats.map((chat) => (
-            <div
-              key={chat?.id ?? chat?.name ?? Math.random()}
-              className={styles.userCard}
-            >
+            <Link to={`/chat/${chat?.chatId}`}>
               <div
-                onClick={() => navigate(`/profile/${chat?.id}`)}
-                className={styles.cardImage}
+                key={chat?.id ?? chat?.name ?? Math.random()}
+                className={styles.userCard}
               >
-                <img
-                  src={chat?.image !== "Not Found" ? chat?.image : usrImg}
-                  alt={chat?.name ?? "Unknown"}
-                />
-              </div>
-              <Link to={`/chat/${chat?.chatId}`}>
+                <div className={styles.cardImage}>
+                  <img
+                    src={chat?.image !== "Not Found" ? chat?.image : usrImg}
+                    alt={chat?.name ?? "Unknown"}
+                  />
+                </div>
                 <div className={styles.cardInfo}>
                   <span className={styles.name}>{chat?.name ?? "No Name"}</span>
                   <span className={styles.lastMsg}>
                     {chat?.lastMessage ?? "No message"}
                   </span>
                 </div>
-              </Link>
-            </div>
+                <span className={styles.type}>{chat?.type}</span>
+              </div>
+            </Link>
           ))
         ) : (
           <div>No chats found</div>

@@ -9,6 +9,8 @@ import handleGoogleSignIn from "../../firebase/loginWithGoogle";
 // import handleFacebookSignIn from "../../firebase/loginWithFacebook";
 import LoginIllustration from "../../assets/svg/LoginIllustration";
 import GoogleLogniBtn from "../../assets/svg/GoogleLogniBtn";
+import { toast } from "react-toastify";
+import { FormattedMessage } from "react-intl";
 
 const Login = () => {
   const [fromData, setFromData] = useState({});
@@ -27,10 +29,14 @@ const Login = () => {
         dispatch(setLogin(res.data.data));
       })
       .then(() => {
+        toast.success("User Logged In Successfully");
         navigate("/");
       })
       .catch((err) => {
         console.log(err);
+        toast.error(
+          err.response.data.message || err.response.data.msg || "Error"
+        );
       });
   };
 
@@ -44,40 +50,29 @@ const Login = () => {
         dispatch(setLogin(res.data.data));
       })
       .then(() => {
+        toast.success("User Logged In Successfully");
         navigate("/");
       })
       .catch((error) => {
-        console.error("Error occurred:", error);
+        toast.error(error.message || "Error ");
+        toast.error("Error occurred! Please try again.");
       });
   };
-
-  // const facebookLogin = () => {
-  //   handleFacebookSignIn()
-  //     .then((res) => {
-  //       localStorage.setItem(
-  //         "user",
-  //         JSON.stringify({ ...res.data.data, isLoggedIn: true })
-  //       );
-  //       dispatch(setLogin(res.data.data));
-  //     })
-  //     .then(() => {
-  //       navigate("/");
-  //     })
-  //     .catch((error) => {
-  //       console.error("Error occurred:", error);
-  //     });
-  // };
 
   return (
     <div className={styles.loginContainer}>
       <div className={styles.leftSide}>
         <h1 className="mt-30">servifay</h1>
         <LoginIllustration />
-        <h2>Online Community For The daily business</h2>
+        <h2>
+          <FormattedMessage id="loginHeroDesc" />
+        </h2>
       </div>
       <div className={styles.rightSide}>
-        <div className={styles.loginMobileLogo}>logo</div>
-        <h2 className={styles.brawserWelcomeText}>Welcome back </h2>
+        <div className={styles.loginMobileLogo}>Seervifay</div>
+        <h2 className={styles.brawserWelcomeText}>
+          <FormattedMessage id="welcomeBack" />
+        </h2>
         <div className={styles.authWith}>
           <div className={styles.authWithChiled} onClick={googleLogin}>
             <GoogleLogniBtn />
@@ -89,7 +84,9 @@ const Login = () => {
         <div className={styles.loginForm}>
           <form>
             <div className={styles.inputGroup}>
-              <label>Email</label>
+              <label>
+                <FormattedMessage id="email" />
+              </label>
               <input
                 type="text"
                 onChange={(event) => {
@@ -102,7 +99,9 @@ const Login = () => {
             </div>
 
             <div className={styles.inputGroup}>
-              <label>Password</label>
+              <label>
+                <FormattedMessage id="password" />
+              </label>
               <input
                 type="password"
                 onChange={(event) => {
@@ -118,7 +117,7 @@ const Login = () => {
               className={styles.ForgetPassword}
               to={"/forgotPassword-addemail"}
             >
-              Forgot password?
+              <FormattedMessage id="forgetPassword" />
             </Link>
             <OrangeButton
               $w="50%"
@@ -126,12 +125,12 @@ const Login = () => {
               type="submit"
               onClick={handelSubmit}
             >
-              LOGIN
+              <FormattedMessage id="login" />
             </OrangeButton>
           </form>
         </div>
         <div className={styles.loginMobileGoToRejester}>
-          Don't have an account?{" "}
+          <FormattedMessage id="doNotHaveAccount" />
           <Link
             style={{
               color: "#ff9300",
@@ -140,7 +139,7 @@ const Login = () => {
             }}
             to={"/register"}
           >
-            Sign up
+            <FormattedMessage id="signup" />
           </Link>
         </div>
       </div>

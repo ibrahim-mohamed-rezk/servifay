@@ -1,0 +1,54 @@
+* {
+  direction: rtl;
+}
+
+/* styles-ar.css */
+
+/* Import a font family that supports Arabic */
+@import url("https://fonts.googleapis.com/css2?family=Tajawal:wght@400;700&display=swap");
+
+/* Set the Arabic font family */
+body {
+  font-family: "Tajawal", sans-serif;
+}
+
+h1 {
+  font-size: 2.5em;
+}
+
+h2 {
+  font-size: 2em;
+}
+
+h3 {
+  font-size: 1.75em;
+}
+
+h4 {
+  font-size: 1.5em;
+}
+
+h5 {
+  font-size: 1.25em;
+}
+
+h6 {
+  font-size: 1.1em;
+}
+
+p {
+  font-size: 1.1em;
+}
+
+span {
+  font-size: 1em;
+}
+
+body {
+  text-align: right;
+}
+
+.logo {
+  text-align: left;
+  display: block;
+}

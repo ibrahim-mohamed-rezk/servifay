@@ -6,10 +6,14 @@ import imageCard from "../../assets/images/services/serviceImage.png";
 import backendURL from "../../axios/backend";
 import { useSelector } from "react-redux";
 import { useLocation, useNavigate } from "react-router-dom";
+import { toast } from "react-toastify";
+import { FormattedMessage, useIntl } from "react-intl";
+
 function Rating() {
   const [rating, setRating] = useState(0);
   const [review, setReview] = useState("");
   const user = useSelector((state) => state.auth);
+  const intl = useIntl();
 
   const handleRatingChange = (newRating) => {
     setRating(newRating);
@@ -45,10 +49,12 @@ function Rating() {
         }
       )
       .then(() => {
+        toast.success("Rating submitted successfully");
         navigate(`/profile/${userId}`);
       })
       .catch((error) => {
-        console.log(error);
+        toast.error(error.message || "Error submitting rating");
+        toast.error("Error occurred! Please try again.");
       });
   };
 
@@ -67,7 +73,7 @@ function Rating() {
       </div>
       <div className="d-flex flex-column align-items-center ">
         <h4 className="text-center fw-bolder mt-5">
-          How would you rate the experience <br /> and service?
+          <FormattedMessage id="howWouldYouRateExperienceAndService" />
         </h4>
         <ReactStars
           count={5}
@@ -81,14 +87,14 @@ function Rating() {
           activeColor="#ffd700"
         />
         <p className={`text-center fw-bolder  ${styles.StarsNum}`}>
-          {rating} - Stars {getRatingText()}
+          {rating} - <FormattedMessage id="stars" /> {getRatingText()}
         </p>
       </div>
       <div className={`${styles.WriteFeedback}`}>
         <textarea
           cols={100}
           rows={10}
-          placeholder="Add Your Feedback"
+          placeholder={intl.formatMessage({ id: "addFeedback" })}
           className={`${styles.textarea}`}
           onChange={(e) => {
             setReview(e.target.value);
@@ -97,7 +103,7 @@ function Rating() {
       </div>
       <div className={`mt-5 ms-4 ${styles.BTN1}`}>
         <OrangeButton onClick={() => handelSubmit()}>
-          Submit Feedback
+          <FormattedMessage id="submitFeedback" />
         </OrangeButton>
       </div>
     </div>

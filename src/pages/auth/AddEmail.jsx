@@ -5,11 +5,14 @@ import styles from "./auth.module.css";
 import OrangeButton from "../../styled-components/buttons/OrangeButton";
 import FormInput from "../../styled-components/inputs/FormInput";
 import backendURL from "../../axios/backend";
+import { toast } from "react-toastify";
+import { FormattedMessage, useIntl } from "react-intl";
 
 const AddEmail = () => {
   const navigate = useNavigate();
   const user = useSelector((data) => data.auth);
   const [email, setEmail] = useState("");
+  const intl = useIntl();
 
   //redirect user to home page if it's logged in
   useEffect(() => {
@@ -23,10 +26,13 @@ const AddEmail = () => {
     backendURL
       .post("/forget", { email })
       .then(() => {
+        toast.success("Email sent successfully");
         navigate("/forgotPassword-addotp");
       })
       .catch((err) => {
-        console.log(err);
+        toast.error(
+          err.response.data.msg[0] || err.response.data.message || "Error"
+        );
       });
   };
 
@@ -34,20 +40,28 @@ const AddEmail = () => {
     <>
       <div className={`container flex-col-c mt-100`}>
         <div className={`${styles.forgetPassChilds} flex-col-c`}>
-          <h2>FORGET PASSWORD</h2>
-          <p>A Verificatio Code Will Be Send To Your Email</p>
+          <h2>
+            <FormattedMessage id="forgetPassword" />
+          </h2>
+          <p>
+            <FormattedMessage id="enterYourEmailBelow" />
+          </p>
         </div>
         <div className={`flex-col-c ${styles.forgetPassChilds}`}>
           <form className={`flex-col-c mt-50`}>
             <FormInput
-              placeholder="Email"
+              placeholder={intl.formatMessage({ id: "email" })}
               type="email"
               onChange={(event) => {
                 setEmail(event.target.value);
               }}
             />
-            <OrangeButton type="submit" onClick={handelSubmit}>
-              SEND
+            <OrangeButton
+              disabled={email === ""}
+              type="submit"
+              onClick={handelSubmit}
+            >
+              <FormattedMessage id="send" />
             </OrangeButton>
           </form>
         </div>

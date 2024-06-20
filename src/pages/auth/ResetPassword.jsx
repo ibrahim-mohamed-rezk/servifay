@@ -5,12 +5,15 @@ import OrangeButton from "../../styled-components/buttons/OrangeButton";
 import FormInput from "../../styled-components/inputs/FormInput";
 import styles from "./auth.module.css";
 import backendURL from "../../axios/backend";
+import { toast } from "react-toastify";
+import { FormattedMessage, useIntl } from "react-intl";
 
 const ResetPassword = () => {
   const navigate = useNavigate();
   const user = useSelector((data) => data.auth);
   const [pass, setPass] = useState({});
   const location = useLocation();
+  const intl = useIntl();
 
   //redirect user to home page if it's logged in
   useEffect(() => {
@@ -24,9 +27,13 @@ const ResetPassword = () => {
     backendURL
       .post(`/reset/${location.pathname.split("/")[2]}`, pass)
       .then(() => {
-        navigate("/");
+        toast.success("Password reset successfully");
+        navigate("/login");
       })
       .catch((err) => {
+        toast.error(
+          err.response.data.message || err.response.data.msg[0] || "Error"
+        );
         console.log(err);
       });
   };
@@ -35,21 +42,25 @@ const ResetPassword = () => {
     <>
       <div className={`container flex-col-c mt-100`}>
         <div className={`${styles.forgetPassChilds} flex-col-c`}>
-          <h2>RESET PASSWORD</h2>
-          <p>Enter The New Password</p>
+          <h2>
+            <FormattedMessage id="resetPassword" />
+          </h2>
+          <p>
+            <FormattedMessage id="enterTheNewPassword" />
+          </p>
         </div>
         <div className={`flex-col-c ${styles.forgetPassChilds}`}>
           <form className={`mt-50 flex-col-c`}>
             <FormInput
-              placeholder="New Password"
-              type="email"
+              placeholder={intl.formatMessage({ id: "newPassword" })}
+              type="text"
               onChange={(event) => {
                 setPass((prev) => ({ ...prev, password: event.target.value }));
               }}
             />
             <FormInput
-              placeholder="Confirmation New Password"
-              type="email"
+              placeholder={intl.formatMessage({ id: "confirmNewPassword" })}
+              type="text"
               onChange={(event) => {
                 setPass((prev) => ({
                   ...prev,
@@ -58,7 +69,7 @@ const ResetPassword = () => {
               }}
             />
             <OrangeButton type="submit" onClick={handelSubmit}>
-              CONFIRM
+              <FormattedMessage id="confirm" />
             </OrangeButton>
           </form>
         </div>
