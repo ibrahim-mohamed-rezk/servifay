@@ -25,6 +25,8 @@ import Chat from "./pages/chat/Chat.jsx";
 import { ToastContainer } from "react-toastify";
 import "react-toastify/dist/ReactToastify.css";
 import { useIntl } from "react-intl";
+import Page404 from "./pages/404/404.jsx";
+import BookingReq from "./pages/bookingReq/BookingReq.jsx";
 
 const App = ({ changeLanguage }) => {
   const dispatch = useDispatch();
@@ -99,6 +101,8 @@ const App = ({ changeLanguage }) => {
         <Route path="/AddService" element={<AddService />} />
         <Route path="/chat" element={<Chat />} />
         <Route path="/chat/:chatId" element={<Chat />} />
+        <Route path="/requests" element={<BookingReq />} />
+        <Route path="*" element={<Page404 />} />
       </Routes>
       <ToastContainer />
       {shouldShowFooter && <Footer />}

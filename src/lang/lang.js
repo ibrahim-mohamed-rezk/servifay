@@ -1,5 +1,6 @@
 const messages = {
   en: {
+    requests: "Requests",
     expNum: "enter number of years experience",
     legalTitle: "Legal",
     companyTitle: "Company",
@@ -250,6 +251,7 @@ const messages = {
     worktime: "Worktime",
   },
   ar: {
+    requests: "الطلبات",
     expNum: "ادخل عدد سنوات الخبرة",
     legalTitle: "قانوني",
     companyTitle: "عناوين",
@@ -490,6 +492,7 @@ const messages = {
     worktime: "مواعيد العمل",
   },
   eg: {
+    requests: "الطلبات",
     expNum: "عدد سنوات خبرتك",
     legalTitle: "قانوني",
     companyTitle: "عناوين",

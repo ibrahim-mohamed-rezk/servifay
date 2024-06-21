@@ -63,6 +63,7 @@ const ServicesSearch = ({ setOpenPopup }) => {
         </span>
       )}
       <div
+        style={{ cursor: "pointer" }}
         onClick={() => {
           setOpenPopup(true);
           // to disable body scrolling when popup opens

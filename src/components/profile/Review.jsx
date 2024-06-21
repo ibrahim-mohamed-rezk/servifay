@@ -1,7 +1,7 @@
 import React from "react";
 import styles from "./review.module.css";
 import ReactStars from "react-stars";
-import img from "../../assets/images/hema.jpeg";
+import img from "../../assets/images/profile/avatar.png";
 
 const Review = ({ review }) => {
   return (
@@ -11,13 +11,7 @@ const Review = ({ review }) => {
           <div className={styles.cardUserImage}>
             <img src={img} alt="userImage" />
           </div>
-          <span
-          // onClick={() => {
-          //   navigate(`/Profile/${id}`);
-          // }}
-          >
-            {review?.userReviewd}
-          </span>
+          <span>{review?.userReviewd}</span>
         </div>
         <div className={styles.stars}>
           <div>

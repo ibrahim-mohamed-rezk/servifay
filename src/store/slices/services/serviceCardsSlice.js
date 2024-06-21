@@ -16,7 +16,11 @@ const initialState = {
 export const servicCardSlice = createSlice({
   name: "serviceCard",
   initialState,
-  reducers: {},
+  reducers: {
+    setServices: (state, action) => {
+      state.data = action.payload;
+    },
+  },
   extraReducers: (builder) => {
     builder.addCase(fetchServiceCard.fulfilled, (state, action) => {
       state.data = action.payload;
@@ -30,4 +34,5 @@ export const servicCardSlice = createSlice({
   },
 });
 
+export const { setServices } = servicCardSlice.actions;
 export default servicCardSlice.reducer;

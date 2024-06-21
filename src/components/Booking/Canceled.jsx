@@ -71,7 +71,9 @@ const Canceled = () => {
               rate={card.specialist.specialist.rating}
               leftBtn={intl.formatMessage({ id: "rebook" })}
               rightBtn={intl.formatMessage({ id: "addRating" })}
-              onclickLBTN={() => {}}
+              onclickLBTN={() => {
+                navigate(`/BookNow/${card.specialist.specialist.id}`);
+              }}
               onclickRBTN={() =>
                 navigate(`/Rating/${card.specialist.specialist.id}`)
               }

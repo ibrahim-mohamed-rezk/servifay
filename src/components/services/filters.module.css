@@ -1,0 +1,105 @@
+.popup {
+  width: 100vw;
+  height: 100vh;
+  background: #00000025;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  position: fixed;
+  top: 0;
+  left: 0;
+  z-index: 999;
+}
+.container {
+  width: 50%;
+  max-height: 450px;
+  margin: auto;
+  background: #fff;
+  padding: 10px;
+  border-radius: 10px;
+  overflow-y: auto;
+
+}
+
+.container::-webkit-scrollbar {
+  display: none;
+}
+
+.header{
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    margin: 0;
+    padding: 0;
+}
+
+.servicesCatigCont{
+    display: flex;
+    flex-direction: column;
+    align-items: flex-start;
+
+}
+
+.servicesCatig{
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    flex-wrap: wrap;
+    gap: 20px;
+    width: 100%;
+}
+
+.service{
+  background: #FF9300;
+  border: none;
+  border-radius: 10px;
+  color: #fff;
+  padding: 5px 10px ;
+  cursor: pointer;
+}
+
+.serviceUnselected{
+  border: none;
+  border-radius: 10px;
+  color: #7F7F7F;
+  padding: 5px 10px ;
+  cursor: pointer;
+}
+
+.nameInput{
+  border-radius: 10px;
+  outline:none;
+  border: 0px;
+  background-color: #ece9f7;
+  margin-top: 20px;
+  padding: 5px 15px;
+  width: 100%;
+}
+
+.cardBtns{
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  width: 100%;
+}
+
+.cardBtns button{
+  width: 40%;
+  padding: 5px;
+  border: none;
+  outline: none;
+  border-radius: 5px;
+  box-shadow: 0px 4px 4px 0px #00000040;
+  font-weight: 600;
+}
+
+.cardBtns .rightBtn{
+  background-color: #FF9300;
+  color: #fff;
+}
+
+.cardBtns .leftBtn{
+  color: #FF9300;
+  border: 1px solid #FF9300;
+  background: #fff;
+}

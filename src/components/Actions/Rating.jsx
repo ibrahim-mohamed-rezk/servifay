@@ -8,10 +8,13 @@ import { useSelector } from "react-redux";
 import { useLocation, useNavigate } from "react-router-dom";
 import { toast } from "react-toastify";
 import { FormattedMessage, useIntl } from "react-intl";
+import { Spin } from "antd";
 
 function Rating() {
   const [rating, setRating] = useState(0);
   const [review, setReview] = useState("");
+  const [service, setService] = useState({});
+  const [loading, setLoading] = useState(true);
   const user = useSelector((state) => state.auth);
   const intl = useIntl();
 
@@ -37,6 +40,20 @@ function Rating() {
     setUserId(location.pathname.split("/")[2]);
   }, [location]);
 
+  useEffect(() => {
+    setLoading(true);
+    backendURL
+      .get(`/specialist/${userId}`, { headers: { Authorization: user.token } })
+      .then((res) => {
+        setService(res.data.data);
+        setLoading(false);
+      })
+      .catch((err) => {
+        setLoading(false);
+        console.log(err);
+      });
+  }, [userId]);
+
   const handelSubmit = () => {
     backendURL
       .post(
@@ -60,16 +77,31 @@ function Rating() {
 
   return (
     <div className={`container mt-3 ${styles.RatingContainer}`}>
+      {loading === true && (
+        <div
+          style={{
+            display: "flex",
+            justifyContent: "center",
+            height: "98vh",
+          }}
+        >
+          <Spin size="large" />
+        </div>
+      )}
       <div className={`${styles.ServiceDetail}`}>
         <div className="d-flex justify-content-center mt-3 ">
           <img
-            src={imageCard}
+            src={service.specialist_info?.image || imageCard}
             alt="service"
             className={`${styles.serviceImg}`}
           />
         </div>
-        <h5 className="mt-3 fw-bolder text-center ">Home maintenance work</h5>
-        <p className="text-secondary fw-bolder  text-center ">2 hr</p>
+        <h5 className="mt-3 fw-bolder text-center ">
+          {service?.specialist_info?.name}
+        </h5>
+        <p className="text-secondary fw-bolder  text-center ">
+          {service?.service_name}
+        </p>
       </div>
       <div className="d-flex flex-column align-items-center ">
         <h4 className="text-center fw-bolder mt-5">

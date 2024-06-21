@@ -54,6 +54,7 @@ const Navbar = ({ changeLanguage }) => {
       path: `/booking/upcomming/${user.id}`,
     },
     { name: intl.formatMessage({ id: "addService" }), path: "/AddService" },
+    { name: intl.formatMessage({ id: "requests" }), path: "/requests" },
   ];
 
   const handleMenuOpen = (event) => {
@@ -137,10 +138,19 @@ const Navbar = ({ changeLanguage }) => {
         if (!user.isloggedin && page.path === "/AddService") {
           return;
         }
+        if (!user.isloggedin && page.path === "/requests") {
+          return;
+        }
         if (user.email_active === "No" && page.path === "/AddService") {
           return;
         }
+        if (user.email_active === "No" && page.path === "/requests") {
+          return;
+        }
         if (user.is_specialist && page.path === "/AddService") {
+          return;
+        }
+        if (!user.is_specialist && page.path === "/requests") {
           return;
         }
         if (page.path.includes("booking") && !user.isloggedin) {
@@ -243,10 +253,10 @@ const Navbar = ({ changeLanguage }) => {
                 }}
               >
                 {pages.map((page, index) => {
-                  if (
-                    !user.isloggedin === true &&
-                    page.path === "/AddService"
-                  ) {
+                  if (!user.isloggedin && page.path === "/AddService") {
+                    return;
+                  }
+                  if (!user.isloggedin && page.path === "/requests") {
                     return;
                   }
                   if (
@@ -255,10 +265,13 @@ const Navbar = ({ changeLanguage }) => {
                   ) {
                     return;
                   }
-                  if (
-                    user.is_specialist === "true" &&
-                    page.path === "/AddService"
-                  ) {
+                  if (user.email_active === "No" && page.path === "/requests") {
+                    return;
+                  }
+                  if (user.is_specialist && page.path === "/AddService") {
+                    return;
+                  }
+                  if (!user.is_specialist && page.path === "/requests") {
                     return;
                   }
                   if (page.path.includes("booking") && !user.isloggedin) {
