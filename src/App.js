@@ -25,7 +25,7 @@ import Chat from "./pages/chat/Chat.jsx";
 import { ToastContainer } from "react-toastify";
 import "react-toastify/dist/ReactToastify.css";
 import { useIntl } from "react-intl";
-import echo from "./echo";
+
 const App = ({ changeLanguage }) => {
   const dispatch = useDispatch();
   const user = useSelector((data) => data.auth);
@@ -38,21 +38,6 @@ const App = ({ changeLanguage }) => {
     "/forgotPassword-addOTP",
     "/forgotPassword-resetPassword",
   ].includes(location.pathname);
-
-  const [message, setMessage] = useState("");
-
-  useEffect(() => {
-    const channel = echo.channel("Servifay");
-    channel.listen("ExampleEvent", (event) => {
-      setMessage(event.data);
-    });
-
-    return () => {
-      echo.leaveChannel("Servifay");
-    };
-  }, []);
-
-  console.log(message);
 
   useEffect(() => {
     window.scrollTo(0, 0);

@@ -1,7 +1,7 @@
 import axios from 'axios';
 
 const backendURL = axios.create({
-  baseURL: process.env.REACT_APP_API_BASE_URL || "http://54.225.3.62/api",
+  baseURL: process.env.REACT_APP_API_BASE_URL || "http://54.164.42.164/api",
 });
 
 backendURL.interceptors.request.use(

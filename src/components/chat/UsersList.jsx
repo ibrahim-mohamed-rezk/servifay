@@ -17,11 +17,11 @@ const UsersList = ({ chats = [] }) => {
       <div className={styles.usersSection}>
         {chats.length > 0 ? (
           chats.map((chat) => (
-            <Link to={`/chat/${chat?.chatId}`}>
-              <div
-                key={chat?.id ?? chat?.name ?? Math.random()}
-                className={styles.userCard}
-              >
+            <Link
+              key={chat?.id ?? chat?.name ?? Math.random()}
+              to={`/chat/${chat?.chatId}`}
+            >
+              <div className={styles.userCard}>
                 <div className={styles.cardImage}>
                   <img
                     src={chat?.image !== "Not Found" ? chat?.image : usrImg}
