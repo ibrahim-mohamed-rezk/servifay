@@ -6,6 +6,7 @@ import ReactStars from "react-stars";
 import backendURL from "../../axios/backend";
 import { setServices } from "../../store/slices/services/serviceCardsSlice";
 import { setSearch } from "../../store/slices/services/filtersSlice";
+import { FormattedMessage } from "react-intl";
 
 const FiltersPopup = ({ setOpenPopup }) => {
   const services = useSelector((data) => data.services.data);
@@ -48,7 +49,9 @@ const FiltersPopup = ({ setOpenPopup }) => {
     <div className={styles.popup}>
       <div className={styles.container}>
         <div className={styles.header}>
-          <h2>Filters</h2>
+          <h2>
+            <FormattedMessage id="filter" />:
+          </h2>
 
           <div
             style={{
@@ -67,7 +70,9 @@ const FiltersPopup = ({ setOpenPopup }) => {
         </div>
         <hr />
         <div className={styles.servicesCatigCont}>
-          <h3>Services:</h3>
+          <h3>
+            <FormattedMessage id="services" />:
+          </h3>
           <div className={styles.servicesCatig}>
             {services &&
               services.map((service) => {
@@ -94,7 +99,9 @@ const FiltersPopup = ({ setOpenPopup }) => {
         </div>
         <hr />
         <div className={styles.servicesCatigCont}>
-          <h3>Rating:</h3>
+          <h3>
+            <FormattedMessage id="rating" />:
+          </h3>
           <div className={styles.servicesCatig}>
             <ReactStars
               count={5}
@@ -114,12 +121,14 @@ const FiltersPopup = ({ setOpenPopup }) => {
         </div>
         <hr />
         <div className={styles.servicesCatigCont}>
-          <h3>Name:</h3>
+          <h3>
+            <FormattedMessage id="name" />:
+          </h3>
           <div className={styles.servicesCatig}>
             <input
               value={cardData.name}
               type="text"
-              placeholder="Service Name"
+              placeholder="Name"
               className={styles.nameInput}
               onChange={(e) => {
                 setCardData((prev) => ({
@@ -138,10 +147,10 @@ const FiltersPopup = ({ setOpenPopup }) => {
             }}
             className={styles.leftBtn}
           >
-            Reset Filter
+            <FormattedMessage id="applyFilter" />
           </button>
           <button onClick={handelSubmit} className={styles.rightBtn}>
-            Apply Filter
+            <FormattedMessage id="resetFilter" />
           </button>
         </div>
       </div>

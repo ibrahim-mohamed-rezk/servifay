@@ -107,7 +107,7 @@ const Navbar = ({ changeLanguage }) => {
             onClose={handleMenuClose}
           >
             <MenuItem onClick={handleMenuClose}>Profile</MenuItem>
-            <MenuItem onClick={handleMenuClose}>Settings</MenuItem>
+
             <MenuItem
               onClick={() => {
                 handleMenuClose();
@@ -147,10 +147,10 @@ const Navbar = ({ changeLanguage }) => {
         if (user.email_active === "No" && page.path === "/requests") {
           return;
         }
-        if (user.is_specialist && page.path === "/AddService") {
+        if (user.is_specialist === "true" && page.path === "/AddService") {
           return;
         }
-        if (!user.is_specialist && page.path === "/requests") {
+        if (user.is_specialist === "false" && page.path === "/requests") {
           return;
         }
         if (page.path.includes("booking") && !user.isloggedin) {
@@ -268,10 +268,16 @@ const Navbar = ({ changeLanguage }) => {
                   if (user.email_active === "No" && page.path === "/requests") {
                     return;
                   }
-                  if (user.is_specialist && page.path === "/AddService") {
+                  if (
+                    user.is_specialist === "true" &&
+                    page.path === "/AddService"
+                  ) {
                     return;
                   }
-                  if (!user.is_specialist && page.path === "/requests") {
+                  if (
+                    user.is_specialist === "false" &&
+                    page.path === "/requests"
+                  ) {
                     return;
                   }
                   if (page.path.includes("booking") && !user.isloggedin) {
@@ -341,7 +347,7 @@ const Navbar = ({ changeLanguage }) => {
                       >
                         <Link to={`/Profile`}>Profile</Link>
                       </MenuItem>
-                      <MenuItem onClick={handleMenuClose}>Settings</MenuItem>
+
                       <MenuItem onClick={handleMenuClose}>
                         <span onClick={handelSignOut}>Sign Out</span>
                       </MenuItem>

@@ -22,15 +22,18 @@ const BookingCard = ({
         </div>
         <div className={styles.info}>
           <span>{name}</span>
-
-          <div className={styles.cardLocation}>
-            <LocationNoFill />
-            <span>{location}</span>
-          </div>
-          <div className={styles.rate}>
-            <span>{rate}</span>
-            <Star />
-          </div>
+          {location && (
+            <div className={styles.cardLocation}>
+              <LocationNoFill />
+              <span>{location}</span>
+            </div>
+          )}
+          {rate && (
+            <div className={styles.rate}>
+              <span>{rate}</span>
+              <Star />
+            </div>
+          )}
         </div>
       </div>
       <div className={styles.line}></div>
